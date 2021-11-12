@@ -1,0 +1,12 @@
+.idea/
+nbproject/
+upload/
+vendor/
+*.log
+
+docs/*
+
+/.env
+/node_modules/
+/package-lock.json
+!/package-lock.json

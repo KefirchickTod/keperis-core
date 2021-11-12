@@ -1,0 +1,39 @@
+{
+  "name": "keperis/table-structure",
+  "description": "Crm/Erp framework for render table and filters it's",
+  "license": "MIT",
+  "type": "libary",
+  "authors": [
+    {
+      "name": "Zakhar Pylypchuck",
+      "email": "zacharpu2@gmail.com"
+    }
+  ],
+  "require": {
+    "ext-curl": "*",
+    "ext-json": "*",
+    "ext-libxml": "*",
+    "ext-mbstring": "*",
+    "ext-pdo": "*",
+    "ext-simplexml": "*",
+    "ext-zlib": "*",
+    "nikic/fast-route": "^1.3",
+    "phpoffice/phpspreadsheet": "^1.19",
+    "pimple/pimple": "^3.2",
+    "spatie/laravel-query-builder": "^4.0",
+    "vlucas/phpdotenv": "^5.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "8",
+    "roave/security-advisories": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "src\\": "src/"
+    }
+  },
+  "config": {
+    "sort-packages": true,
+    "optimize-autoloader": true
+  }
+}

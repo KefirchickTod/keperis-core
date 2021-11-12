@@ -1,10 +1,10 @@
 <?php
 
 
-namespace src\Eloquent\Concerns;
+namespace Keperis\Eloquent\Concerns;
 
 
-use src\Xlsx\Import\Renderer\Render;
+use Keperis\Xlsx\Import\Renderer\Render;
 
 trait ImportXlsx
 {

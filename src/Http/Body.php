@@ -1,7 +1,7 @@
 <?php
 
 
-namespace src\Http;
+namespace Keperis\Http;
 
 
 class Body extends Stream

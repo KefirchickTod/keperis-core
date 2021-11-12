@@ -1,7 +1,7 @@
 <?php
 
 
-namespace src;
+namespace Keperis;
 
 
 use Exception;
@@ -9,18 +9,18 @@ use Illuminate\Database\ConnectionResolver;
 use Illuminate\Database\MySqlConnection;
 use Psr\Container\ContainerInterface;
 
-use src\Eloquent\Model;
-use src\Http\Environment;
-use src\Http\Headers;
-use src\Http\Request;
-use src\Http\Response;
-use src\Http\ServerData;
-use src\Http\Session;
-use src\Middleware\Middleware;
-use src\Middleware\RequestHandler;
-use src\Middleware\RequestHandler\NotFoundHandler;
-use src\Router\Router;
-use src\Structure\Structure;
+use Keperis\Eloquent\Model;
+use Keperis\Http\Environment;
+use Keperis\Http\Headers;
+use Keperis\Http\Request;
+use Keperis\Http\Response;
+use Keperis\Http\ServerData;
+use Keperis\Http\Session;
+use Keperis\Middleware\Middleware;
+use Keperis\Middleware\RequestHandler;
+use Keperis\Middleware\RequestHandler\NotFoundHandler;
+use Keperis\Router\Router;
+use Keperis\Structure\Structure;
 
 
 /**
@@ -190,7 +190,7 @@ final class Container extends \Pimple\Container implements ContainerInterface
 
                 $connection = new MySqlConnection($pdo($e->env), $e->env->get('DB_NAME'));
 
-                $resolver = new \src\Eloquent\ConnectionResolver([
+                $resolver = new \Keperis\Eloquent\ConnectionResolver([
                     'mysql' => $connection,
                 ]);
 

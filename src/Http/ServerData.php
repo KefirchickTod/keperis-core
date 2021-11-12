@@ -1,10 +1,10 @@
 <?php
 
 
-namespace src\Http;
+namespace Keperis\Http;
 
 
-use src\Collection;
+use Keperis\Collection;
 
 class ServerData extends Collection
 {

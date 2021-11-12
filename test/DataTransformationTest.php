@@ -1,11 +1,11 @@
 <?php
 
-namespace src\Page;
+namespace Keperis\Page;
 
 use PHPUnit\Framework\TestCase;
-use src\Eloquent\Provide\Commands\ProvideReceiver;
-use src\Eloquent\Provide\StructureCollection;
-use src\Structure\ProvideStructures;
+use Keperis\Eloquent\Provide\Commands\ProvideReceiver;
+use Keperis\Eloquent\Provide\StructureCollection;
+use Keperis\Structure\ProvideStructures;
 
 
 class bcTest extends ProvideStructures

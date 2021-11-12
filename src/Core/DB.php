@@ -1,12 +1,12 @@
 <?php
 
-namespace src\Core;
+namespace Keperis\Core;
 
 use PDO;
 use PDOException;
-use src\Controller\Api\ErrorApi;
-use src\Core\Database\DatabaseAdapter;
-use src\Core\Database\DatabaseInfoScheme;
+use Keperis\Controller\Api\ErrorApi;
+use Keperis\Core\Database\DatabaseAdapter;
+use Keperis\Core\Database\DatabaseInfoScheme;
 
 class DB
 {

@@ -1,10 +1,10 @@
 <?php
 
 
-use src\Container;
-use src\Core\easyCreateHTML;
-use src\Router\Router;
-use src\Structure\Structure;
+use Keperis\Container;
+use Keperis\Core\easyCreateHTML;
+use Keperis\Router\Router;
+use Keperis\Structure\Structure;
 
 if (!function_exists('debug')) {
     /**
@@ -34,13 +34,13 @@ if (!function_exists('resource')) {
     /**
      * @param $names
      * @param array $param
-     * @return string|\src\View\View
+     * @return string|\Keperis\View\View
      */
     function resource($names, $param = [])
     {
 
 
-        return \src\View\ViewFactory::make($names, $param);
+        return \Keperis\View\ViewFactory::make($names, $param);
 
 //        static $resource;
 //
@@ -48,7 +48,7 @@ if (!function_exists('resource')) {
 //            $resource = new Resource();
 //        }
 //        /**
-//         * @var $response \src\Http\Response
+//         * @var $response \Keperis\Http\Response
 //         */
 //        $response = \container()->get('response');
 //        $resource->set(!is_array($names) ? [$names] : $names, $param);
@@ -171,7 +171,7 @@ function marshalUriFromSapi(array $server, array $headers)
         return $origPathInfo;
     };
 
-    $uri = \App\src\Http\Uri::creat(new \App\src\Http\ServerData($_SERVER));
+    $uri = \App\Keperis\Http\Uri::creat(new \App\Keperis\Http\ServerData($_SERVER));
 
     // URI scheme
     $scheme = 'http';
@@ -251,7 +251,7 @@ if (!function_exists('get')) {
     {
         return valid($_GET, $key, $default);
 //        $request = app()->container->get('request');
-//        /** @var $request \App\src\Http\Request */
+//        /** @var $request \App\Keperis\Http\Request */
 //        return $request->getBody();
     }
 }
@@ -1119,7 +1119,7 @@ if (!function_exists('container')) {
 
 if (!function_exists('uri')) {
     /**
-     * @return \src\Http\Uri
+     * @return \Keperis\Http\Uri
      */
     function uri()
     {
@@ -1207,9 +1207,9 @@ if (!function_exists('startsWith')) {
 }
 
 if (!function_exists('db')) {
-    function db(): \src\Core\DB
+    function db(): \Keperis\Core\DB
     {
-        return \src\Core\DB::getInstance();
+        return \Keperis\Core\DB::getInstance();
     }
 }
 
@@ -1351,7 +1351,7 @@ if (!function_exists('safePostVars')) {
 }
 
 if (!function_exists('setting')) {
-    function setting(): \src\Collection
+    function setting(): \Keperis\Collection
     {
         return \container()->get('setting');
     }
@@ -1449,7 +1449,7 @@ if (!function_exists('closetags')) {
 if (!function_exists("getMassage")) {
     function getMassage($key = null)
     {
-        /** @var  $request \App\src\Http\Request */
+        /** @var  $request \App\Keperis\Http\Request */
         $request = \container()->get('request');
         return $key ? $request->getAttribute($key) : $request->getAttributes();
     }
@@ -1492,8 +1492,8 @@ if (!function_exists('change_key')) {
 if (!function_exists('route')) {
     function route($lookup, $parrams = [], string $pattern = null)
     {
-        /** @var  $router  \src\Router\Route */
-        /** @var $route \src\Router\Route */
+        /** @var  $router  \Keperis\Router\Route */
+        /** @var $route \Keperis\Router\Route */
         $router = container()->get('router');
         $route = $router->lookupRoute($lookup);
         $route = $pattern ? $route->withPattern($pattern) : $route;
@@ -1546,7 +1546,7 @@ if (!function_exists('miniCss')) {
 
 if (!function_exists('session')) {
     /**
-     * @return \src\Http\Session
+     * @return \Keperis\Http\Session
      */
 
     function session()

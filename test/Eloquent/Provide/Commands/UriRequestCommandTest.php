@@ -1,13 +1,13 @@
 <?php
 
-namespace src\Eloquent\Provide\Commands;
+namespace Keperis\Eloquent\Provide\Commands;
 
 
 use PHPUnit\Framework\TestCase;
-use src\Http\Request;
-use src\Http\ServerData;
-use src\Http\Uri;
-use src\Structure\ProvideStructures;
+use Keperis\Http\Request;
+use Keperis\Http\ServerData;
+use Keperis\Http\Uri;
+use Keperis\Structure\ProvideStructures;
 
 class SimulateCommand extends UriRequestCommand
 {

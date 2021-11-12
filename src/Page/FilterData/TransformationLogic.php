@@ -1,10 +1,10 @@
 <?php
 
-namespace src\Page\FilterData;
+namespace Keperis\Page\FilterData;
 
-use src\Eloquent\Provide\StructureCollection;
+use Keperis\Eloquent\Provide\StructureCollection;
 
-use src\Structure\ProvideStructures;
+use Keperis\Structure\ProvideStructures;
 
 abstract class TransformationLogic
 {

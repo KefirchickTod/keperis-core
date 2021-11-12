@@ -1,12 +1,12 @@
 <?php
 
 
-namespace src\EventDispatcher\Concerns;
+namespace Keperis\EventDispatcher\Concerns;
 
 
-use src\EventDispatcher\Dispatcher\Dispatcher;
-use src\EventDispatcher\Provider\ListenerCollection;
-use src\EventDispatcher\Provider\Provider;
+use Keperis\EventDispatcher\Dispatcher\Dispatcher;
+use Keperis\EventDispatcher\Provider\ListenerCollection;
+use Keperis\EventDispatcher\Provider\Provider;
 
 trait DelegatesToDisptacher
 {

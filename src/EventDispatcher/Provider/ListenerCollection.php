@@ -1,7 +1,7 @@
 <?php
 
 
-namespace src\EventDispatcher\Provider;
+namespace Keperis\EventDispatcher\Provider;
 
 
 use InvalidArgumentException;

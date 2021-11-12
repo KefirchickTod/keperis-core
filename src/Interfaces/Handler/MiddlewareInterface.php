@@ -1,10 +1,10 @@
 <?php
 
 
-namespace src\Interfaces\Handler;
+namespace Keperis\Interfaces\Handler;
 
-use src\Http\Request;
-use src\Http\Response;
+use Keperis\Http\Request;
+use Keperis\Http\Response;
 
 /**
  * Participant in processing a server request and response.
@@ -16,8 +16,8 @@ use src\Http\Response;
 
 /**
  * Interface MiddlewareInterface
- * @package App\src\Interfaces
- * @property \src\Http\Response $response
+ * @package App\Keperis\Interfaces
+ * @property \Keperis\Http\Response $response
  */
 interface MiddlewareInterface
 {

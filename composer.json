@@ -1,5 +1,5 @@
 {
-  "name": "keperis/table-structure",
+  "name": "keperis/core-fr",
   "description": "Crm/Erp framework for render table and filters it's",
   "license": "MIT",
   "type": "libary",
@@ -29,7 +29,7 @@
   },
   "autoload": {
     "psr-4": {
-      "src\\": "src/"
+      "Keperis\\": "src/"
     }
   },
   "config": {

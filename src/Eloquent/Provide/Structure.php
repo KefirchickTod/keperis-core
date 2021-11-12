@@ -1,7 +1,7 @@
 <?php
 
 
-namespace src\Eloquent\Provide;
+namespace Keperis\Eloquent\Provide;
 
 
 class Structure

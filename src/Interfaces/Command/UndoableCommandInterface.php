@@ -1,6 +1,6 @@
 <?php
 
-namespace src\Interfaces\Command;
+namespace Keperis\Interfaces\Command;
 
 interface UndoableCommandInterface extends CommandInterface
 {

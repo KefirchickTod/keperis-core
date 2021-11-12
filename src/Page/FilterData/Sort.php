@@ -1,10 +1,10 @@
 <?php
 
 
-namespace src\Page\FilterData;
+namespace Keperis\Page\FilterData;
 
 
-use src\Eloquent\Provide\Commands\ProvideReceiver;
+use Keperis\Eloquent\Provide\Commands\ProvideReceiver;
 
 class Sort extends TransformationLogic
 {

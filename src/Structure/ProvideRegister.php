@@ -1,7 +1,7 @@
 <?php
 
 
-namespace src\Structure;
+namespace Keperis\Structure;
 
 
 

@@ -1,10 +1,10 @@
 <?php
 
 
-namespace src\View\Validators;
+namespace Keperis\View\Validators;
 
 
-use src\View\ValidatorInterface;
+use Keperis\View\ValidatorInterface;
 
 /**
  * Class Validator

@@ -4,7 +4,7 @@
  * @version 0.1
  */
 
-namespace src;
+namespace Keperis;
 
 
 final class CallableResolver

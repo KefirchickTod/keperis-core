@@ -1,11 +1,11 @@
 <?php
 
 
-namespace src\Page\Components\Table;
+namespace Keperis\Page\Components\Table;
 
 
-use src\Collection;
-use src\Page\Components\TableComponent;
+use Keperis\Collection;
+use Keperis\Page\Components\TableComponent;
 
 class THead implements TableEntity
 {

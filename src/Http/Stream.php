@@ -1,12 +1,12 @@
 <?php
 
 
-namespace src\Http;
+namespace Keperis\Http;
 
 
 use Error;
 use RuntimeException;
-use src\Interfaces\StreamInterface;
+use Keperis\Interfaces\StreamInterface;
 
 
 class Stream implements StreamInterface

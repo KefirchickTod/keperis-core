@@ -1,14 +1,14 @@
 <?php
 
 
-namespace src\Http;
+namespace Keperis\Http;
 
 
-use src\Interfaces\SessionInterface;
+use Keperis\Interfaces\SessionInterface;
 
 /**
  * Class Session
- * @package App\src\Http
+ * @package App\Keperis\Http
  * @author Zakhar
  */
 class Session implements SessionInterface

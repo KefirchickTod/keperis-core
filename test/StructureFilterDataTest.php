@@ -1,6 +1,6 @@
 <?php
 
-namespace src\Structure\StructureFilters;
+namespace Keperis\Structure\StructureFilters;
 
 use PHPUnit\Framework\TestCase;
 

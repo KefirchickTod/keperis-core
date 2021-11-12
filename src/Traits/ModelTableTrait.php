@@ -1,16 +1,16 @@
 <?php
 
 
-namespace src\Traits;
+namespace Keperis\Traits;
 
 
-use src\Core\Page\PageCreateButtons;
-use src\Core\Page\PageCreatePaginator;
-use src\Core\Page\PageCreator;
-use src\Core\Page\ProvideTable;
-use src\Core\provideExport;
-use src\Interfaces\Buttons;
-use src\Structure\ProvideFilter;
+use Keperis\Core\Page\PageCreateButtons;
+use Keperis\Core\Page\PageCreatePaginator;
+use Keperis\Core\Page\PageCreator;
+use Keperis\Core\Page\ProvideTable;
+use Keperis\Core\provideExport;
+use Keperis\Interfaces\Buttons;
+use Keperis\Structure\ProvideFilter;
 
 trait ModelTableTrait
 {

@@ -1,17 +1,17 @@
 <?php
 
 
-namespace src\View\Renderer;
+namespace Keperis\View\Renderer;
 
 /**
  * Class Render
- * @package Src\src\View\Renderer
+ * @package Src\Keperis\View\Renderer
  * @author Zahar Pylypchuck
  * @version 0.1
  */
 
-use src\View\RenderInterface;
-use src\View\ValidatorInterface;
+use Keperis\View\RenderInterface;
+use Keperis\View\ValidatorInterface;
 
 
 class Render implements RenderInterface

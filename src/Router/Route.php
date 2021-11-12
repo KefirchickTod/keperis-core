@@ -1,20 +1,20 @@
 <?php
 
 
-namespace src\Router;
+namespace Keperis\Router;
 
 
 use FastRoute\RouteParser\Std;
 use LogicException;
-use src\Controller\Controller;
-use src\Http\Body;
-use src\Http\Request;
-use src\Http\RequestResponse;
-use src\Http\Response;
-use src\Interfaces\ResponseInterface;
-use src\Middleware\RequestHandler;
-use src\Resource;
-use src\View\View;
+use Keperis\Controller\Controller;
+use Keperis\Http\Body;
+use Keperis\Http\Request;
+use Keperis\Http\RequestResponse;
+use Keperis\Http\Response;
+use Keperis\Interfaces\ResponseInterface;
+use Keperis\Middleware\RequestHandler;
+use Keperis\Resource;
+use Keperis\View\View;
 
 class Route extends Routeable
 {

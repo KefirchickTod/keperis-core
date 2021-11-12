@@ -1,15 +1,15 @@
 <?php
 
 
-namespace src\Http;
+namespace Keperis\Http;
 
 
 use Error;
 use InvalidArgumentException;
-use src\Collection;
-use src\Interfaces\HeaderInterface;
-use src\Interfaces\MessageInterface;
-use src\Interfaces\StreamInterface;
+use Keperis\Collection;
+use Keperis\Interfaces\HeaderInterface;
+use Keperis\Interfaces\MessageInterface;
+use Keperis\Interfaces\StreamInterface;
 
 abstract class Message implements MessageInterface
 {

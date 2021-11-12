@@ -1,7 +1,7 @@
 <?php
 
 
-namespace src\Page\Components\Table;
+namespace Keperis\Page\Components\Table;
 
 
 use Closure;
@@ -153,7 +153,7 @@ class ActionButton
                                     continue;
                                 }
                                 if (isset($action['api']) && $action['settingApi']) {
-                                    $api = \src\bcerpapi::sendRequest($action['api']);
+                                    $api = \Keperis\bcerpapi::sendRequest($action['api']);
                                     $data = $this->setOtherIds($action['settingApi'], $data, $this->row, $api);
                                 }
                                 if (isset($action['id']) && $action['id'] == true) {

@@ -1,11 +1,11 @@
 <?php
 
-namespace src\EventDispatcher\Dispatcher;
+namespace Keperis\EventDispatcher\Dispatcher;
 
 
-use src\Interfaces\EventDispatcher\EventDispatcherInterface;
-use src\Interfaces\EventDispatcher\ListenerProviderInterface;
-use src\Interfaces\EventDispatcher\StopabledEventIterface;
+use Keperis\Interfaces\EventDispatcher\EventDispatcherInterface;
+use Keperis\Interfaces\EventDispatcher\ListenerProviderInterface;
+use Keperis\Interfaces\EventDispatcher\StopabledEventIterface;
 
 class Dispatcher implements EventDispatcherInterface
 {

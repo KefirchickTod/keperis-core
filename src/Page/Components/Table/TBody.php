@@ -1,12 +1,12 @@
 <?php
 
 
-namespace src\Page\Components\Table;
+namespace Keperis\Page\Components\Table;
 
 
 use Illuminate\Support\Str;
-use src\MiddlewareProvideTableTrait;
-use src\Page\Components\TableComponent;
+use Keperis\MiddlewareProvideTableTrait;
+use Keperis\Page\Components\TableComponent;
 use stdClass;
 
 class TBody implements TableEntity

@@ -2,7 +2,7 @@
 
 namespace Collection;
 
-use src\Collection;
+use Keperis\Collection;
 use PHPUnit\Framework\TestCase;
 
 class CollectionTest extends TestCase

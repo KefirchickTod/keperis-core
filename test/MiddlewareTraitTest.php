@@ -1,6 +1,6 @@
 <?php
 
-namespace src;
+namespace Keperis;
 
 use PHPUnit\Framework\TestCase;
 

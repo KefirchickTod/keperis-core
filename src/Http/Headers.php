@@ -1,11 +1,11 @@
 <?php
 
 
-namespace src\Http;
+namespace Keperis\Http;
 
 
-use src\Collection;
-use src\Interfaces\HeaderInterface;
+use Keperis\Collection;
+use Keperis\Interfaces\HeaderInterface;
 
 class Headers extends Collection implements HeaderInterface
 {

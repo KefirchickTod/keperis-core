@@ -1,9 +1,9 @@
 <?php
 
-namespace src\Eloquent\Provide;
+namespace Keperis\Eloquent\Provide;
 
 use PHPUnit\Framework\TestCase;
-use src\Structure\ProvideStructures;
+use Keperis\Structure\ProvideStructures;
 
 class bcTest extends ProvideStructures
 {

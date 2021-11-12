@@ -1,15 +1,15 @@
 <?php
 
 
-namespace src\Structure;
+namespace Keperis\Structure;
 
 
-use src\Collection;
+use Keperis\Collection;
 
 abstract class ProvideStructures extends Collection
 {
 
-    const namespace = 'App\src\Structure\ProvideStructures\\';
+    const namespace = 'App\Keperis\Structure\ProvideStructures\\';
     /**
      * List of ignore column in property sql setting
      * @var string[]

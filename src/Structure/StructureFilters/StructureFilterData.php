@@ -1,11 +1,11 @@
 <?php
 
 
-namespace src\Structure\StructureFilters;
+namespace Keperis\Structure\StructureFilters;
 
 
 use Prophecy\Exception\InvalidArgumentException;
-use src\MiddlewareTrait;
+use Keperis\MiddlewareTrait;
 
 trait StructureFilterData
 {

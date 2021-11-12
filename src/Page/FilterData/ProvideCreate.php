@@ -1,7 +1,7 @@
 <?php
 
 
-namespace src\Page\FilterData;
+namespace Keperis\Page\FilterData;
 
 
 interface ProvideCreate

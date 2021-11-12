@@ -1,10 +1,10 @@
 <?php
 
-namespace src\Page\FilterData;
+namespace Keperis\Page\FilterData;
 
 use PHPUnit\Framework\TestCase;
-use src\Page\DataTransformation;
-use src\Structure\ProvideStructures;
+use Keperis\Page\DataTransformation;
+use Keperis\Structure\ProvideStructures;
 
 class bcTest extends ProvideStructures
 {

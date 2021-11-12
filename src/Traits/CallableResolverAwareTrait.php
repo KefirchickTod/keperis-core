@@ -1,10 +1,10 @@
 <?php
 
 
-namespace src\Traits;
+namespace Keperis\Traits;
 use RuntimeException;
-use src\CallableResolver;
-use src\Container;
+use Keperis\CallableResolver;
+use Keperis\Container;
 
 /**
  * ResolveCallable

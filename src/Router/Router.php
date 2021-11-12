@@ -1,7 +1,7 @@
 <?php
 
 
-namespace src\Router;
+namespace Keperis\Router;
 
 
 use Error;
@@ -10,9 +10,9 @@ use FastRoute\RouteCollector;
 use FastRoute\RouteParser;
 use Psr\Container\ContainerInterface;
 use RuntimeException;
-use src\Controller\Controller;
-use src\Http\Request;
-use src\Middleware\RequestHandler;
+use Keperis\Controller\Controller;
+use Keperis\Http\Request;
+use Keperis\Middleware\RequestHandler;
 use function FastRoute\simpleDispatcher;
 
 class Router

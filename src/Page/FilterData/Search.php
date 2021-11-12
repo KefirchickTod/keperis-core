@@ -1,11 +1,11 @@
 <?php
 
 
-namespace src\Page\FilterData;
+namespace Keperis\Page\FilterData;
 
 
 use Error;
-use src\Eloquent\Provide\Commands\ProvideReceiverInterface;
+use Keperis\Eloquent\Provide\Commands\ProvideReceiverInterface;
 
 class Search extends TransformationLogic
 {

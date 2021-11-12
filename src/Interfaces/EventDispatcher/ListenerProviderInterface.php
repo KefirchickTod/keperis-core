@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace src\Interfaces\EventDispatcher;
+namespace Keperis\Interfaces\EventDispatcher;
 
 
 /**

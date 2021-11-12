@@ -1,11 +1,11 @@
 <?php
 
 
-namespace src\Traits;
+namespace Keperis\Traits;
 
 
-use src\Interfaces\CollectionInterface;
-use src\Models\Model;
+use Keperis\Interfaces\CollectionInterface;
+use Keperis\Models\Model;
 
 trait HasAttributes
 {

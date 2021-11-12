@@ -6,20 +6,20 @@
  * @package App|App
  */
 
-namespace src;
+namespace Keperis;
 
 
 use FastRoute\Dispatcher;
 use RuntimeException;
-use src\Http\Request;
-use src\Http\Response;
-use src\Interfaces\RequestHandlerInterface;
-use src\Interfaces\ResponseInterface;
-use src\Middleware\Middleware;
-use src\Middleware\RequestHandler;
-use src\Router\Route;
-use src\Router\RouteGroup;
-use src\Router\Router;
+use Keperis\Http\Request;
+use Keperis\Http\Response;
+use Keperis\Interfaces\RequestHandlerInterface;
+use Keperis\Interfaces\ResponseInterface;
+use Keperis\Middleware\Middleware;
+use Keperis\Middleware\RequestHandler;
+use Keperis\Router\Route;
+use Keperis\Router\RouteGroup;
+use Keperis\Router\Router;
 
 class App
 {
@@ -41,7 +41,7 @@ class App
 
         $this->container = new Container(compact('setting'));
 
-        $this->middleware = new Middleware(new \src\Middleware\RequestHandler\NotFoundHandler());
+        $this->middleware = new Middleware(new \Keperis\Middleware\RequestHandler\NotFoundHandler());
 
         $this->requestHandle = new RequestHandler();
 

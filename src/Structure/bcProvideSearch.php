@@ -1,11 +1,11 @@
 <?php
 
 
-namespace src\Structure;
+namespace Keperis\Structure;
 
 use DateTime;
 use Exception;
-use src\Core\Filtration\DataFilterPrototype;
+use Keperis\Core\Filtration\DataFilterPrototype;
 
 class bcProvideSearch extends DataFilterPrototype
 {

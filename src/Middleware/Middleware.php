@@ -1,14 +1,14 @@
 <?php
 
 
-namespace src\Middleware;
+namespace Keperis\Middleware;
 
 
 use Psr\Http\Message\RequestInterface;
-use src\Http\Request;
-use src\Http\Response;
-use src\Interfaces\Handler\MiddlewareInterface;
-use src\Interfaces\Handler\RequestHandlerInterface;
+use Keperis\Http\Request;
+use Keperis\Http\Response;
+use Keperis\Interfaces\Handler\MiddlewareInterface;
+use Keperis\Interfaces\Handler\RequestHandlerInterface;
 
 class Middleware implements MiddlewareInterface
 {

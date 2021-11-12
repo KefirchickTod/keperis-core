@@ -1,10 +1,10 @@
 <?php
 
 
-namespace src\View;
+namespace Keperis\View;
 
 
-use src\View\RenderInterface;
+use Keperis\View\RenderInterface;
 
 /**
  * Class View

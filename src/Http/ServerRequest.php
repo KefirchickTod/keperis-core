@@ -1,10 +1,10 @@
 <?php
 
-namespace src\Http;
+namespace Keperis\Http;
 use InvalidArgumentException;
-use src\Interfaces\StreamInterface;
-use src\Interfaces\UploadedFileInterface;
-use src\Interfaces\UriInterface;
+use Keperis\Interfaces\StreamInterface;
+use Keperis\Interfaces\UploadedFileInterface;
+use Keperis\Interfaces\UriInterface;
 
 class ServerRequest extends Request
 {

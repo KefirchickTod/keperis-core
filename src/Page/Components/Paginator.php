@@ -1,11 +1,11 @@
 <?php
 
 
-namespace src\Page\Components;
+namespace Keperis\Page\Components;
 
 
-use src\Interfaces\ProvideMask;
-use src\Page\Component;
+use Keperis\Interfaces\ProvideMask;
+use Keperis\Page\Component;
 
 class Paginator extends Component
 {

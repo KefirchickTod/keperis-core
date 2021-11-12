@@ -1,7 +1,7 @@
 <?php
 
 
-namespace src\View;
+namespace Keperis\View;
 
 
 interface RenderInterface

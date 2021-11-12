@@ -1,7 +1,7 @@
 <?php
 
 
-namespace src\Interfaces\Xlsx;
+namespace Keperis\Interfaces\Xlsx;
 
 
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;

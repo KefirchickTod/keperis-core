@@ -1,11 +1,11 @@
 <?php
 
 
-namespace src\View;
+namespace Keperis\View;
 
-use src\View\ValidatorInterface;
-use src\View\Renderer\Render;
-use src\View\Validators\Validator;
+use Keperis\View\ValidatorInterface;
+use Keperis\View\Renderer\Render;
+use Keperis\View\Validators\Validator;
 
 /**
  * Class ViewFactory

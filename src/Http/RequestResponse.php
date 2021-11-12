@@ -1,10 +1,10 @@
 <?php
 
 
-namespace src\Http;
+namespace Keperis\Http;
 
 
-use src\Controller\Controller;
+use Keperis\Controller\Controller;
 
 class RequestResponse
 {

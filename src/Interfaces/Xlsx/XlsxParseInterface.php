@@ -1,11 +1,11 @@
 <?php
 
 
-namespace src\Interfaces\Xlsx;
+namespace Keperis\Interfaces\Xlsx;
 
 
-use src\Collection;
-use src\Models\Model;
+use Keperis\Collection;
+use Keperis\Models\Model;
 
 interface XlsxParseInterface
 {

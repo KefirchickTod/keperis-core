@@ -1,10 +1,10 @@
 <?php
 
 
-namespace src\EventDispatcher\Provider;
+namespace Keperis\EventDispatcher\Provider;
 
 
-use src\Interfaces\EventDispatcher\ListenerProviderInterface;
+use Keperis\Interfaces\EventDispatcher\ListenerProviderInterface;
 
 class Provider implements ListenerProviderInterface
 {

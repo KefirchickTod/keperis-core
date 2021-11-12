@@ -1,14 +1,14 @@
 <?php
 
 
-namespace src\Eloquent\Provide;
+namespace Keperis\Eloquent\Provide;
 
 
-use src\Eloquent\Provide\Processes\ProcessorInterface;
-use src\EventDispatcher\Dispatcher\Dispatcher;
-use src\EventDispatcher\Provider\ListenerCollection;
-use src\Interfaces\EventDispatcher\EventDispatcherInterface;
-use src\Interfaces\EventDispatcher\ListenerProviderInterface;
+use Keperis\Eloquent\Provide\Processes\ProcessorInterface;
+use Keperis\EventDispatcher\Dispatcher\Dispatcher;
+use Keperis\EventDispatcher\Provider\ListenerCollection;
+use Keperis\Interfaces\EventDispatcher\EventDispatcherInterface;
+use Keperis\Interfaces\EventDispatcher\ListenerProviderInterface;
 
 class ProvideStructure implements ListenerProviderInterface
 {
@@ -82,7 +82,7 @@ class ProvideStructure implements ListenerProviderInterface
 
     public function __clone()
     {
-        $this->listener = new \src\EventDispatcher\Provider\ListenerCollection();
+        $this->listener = new \Keperis\EventDispatcher\Provider\ListenerCollection();
     }
 
 

@@ -1,11 +1,11 @@
 <?php
 
 
-namespace src\Interfaces\Handler;
+namespace Keperis\Interfaces\Handler;
 
 
-use src\Http\Request;
-use src\Interfaces\ResponseInterface;
+use Keperis\Http\Request;
+use Keperis\Interfaces\ResponseInterface;
 
 /**
  * Handles a server request and produces a response.

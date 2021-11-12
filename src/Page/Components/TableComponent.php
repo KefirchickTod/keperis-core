@@ -1,14 +1,14 @@
 <?php
 
-namespace src\Page\Components;
+namespace Keperis\Page\Components;
 
-use src\Interfaces\ProvideMask;
-use src\Page\Component;
-use src\Page\Components\Table\TableEntity;
-use src\Page\Components\Table\TBody;
-use src\Page\Components\Table\TFooter;
-use src\Page\Components\Table\THead;
-use src\Page\Components\Table\View\TableViewValidator;
+use Keperis\Interfaces\ProvideMask;
+use Keperis\Page\Component;
+use Keperis\Page\Components\Table\TableEntity;
+use Keperis\Page\Components\Table\TBody;
+use Keperis\Page\Components\Table\TFooter;
+use Keperis\Page\Components\Table\THead;
+use Keperis\Page\Components\Table\View\TableViewValidator;
 
 class TableComponent extends Component
 {
@@ -100,7 +100,7 @@ class TableComponent extends Component
             $name = static::$resourceTemplate;
         };
         try {
-            $temp = \src\View\ViewFactory::makeWithOwnValidator(new TableViewValidator(),
+            $temp = \Keperis\View\ViewFactory::makeWithOwnValidator(new TableViewValidator(),
                 $name)->withDir(__DIR__ . '/resource')->render();
         } catch (\Exception $exception) {
             error_log($exception->getMessage());

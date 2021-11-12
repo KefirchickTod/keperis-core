@@ -1,14 +1,14 @@
 <?php
 
 
-namespace src\Eloquent\Provide\Processes;
+namespace Keperis\Eloquent\Provide\Processes;
 
 
 use Exception;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Database\QueryException;
-use src\Eloquent\Provide\ProvideStructure;
-use src\Eloquent\Provide\StructureCollection;
+use Keperis\Eloquent\Provide\ProvideStructure;
+use Keperis\Eloquent\Provide\StructureCollection;
 use Symfony\Component\Console\Helper\DebugFormatterHelper;
 
 abstract class ProvideStructureProcessor implements ProcessorInterface

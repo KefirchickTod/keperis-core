@@ -1,10 +1,10 @@
 <?php
 
 
-namespace src\Router;
+namespace Keperis\Router;
 
-use src\Container;
-use src\Middleware\RequestHandler;
+use Keperis\Container;
+use Keperis\Middleware\RequestHandler;
 
 abstract class Routeable
 {

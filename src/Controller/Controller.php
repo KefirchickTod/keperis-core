@@ -1,18 +1,18 @@
 <?php
 
 
-namespace src\Controller;
+namespace Keperis\Controller;
 
 
 use App\Provides\Mask;
-use src\Container;
-use src\Core\Page\PageCreator;
-use src\Core\Page\ProvideTable;
-use src\Http\Request;
-use src\Http\Response;
-use src\Models\Model;
-use src\Structure\ProvideFilter;
-use src\Structure\Structure;
+use Keperis\Container;
+use Keperis\Core\Page\PageCreator;
+use Keperis\Core\Page\ProvideTable;
+use Keperis\Http\Request;
+use Keperis\Http\Response;
+use Keperis\Models\Model;
+use Keperis\Structure\ProvideFilter;
+use Keperis\Structure\Structure;
 
 
 abstract class Controller

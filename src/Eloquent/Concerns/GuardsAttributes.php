@@ -1,7 +1,7 @@
 <?php
 
 
-namespace src\Eloquent\Concerns;
+namespace Keperis\Eloquent\Concerns;
 
 
 trait GuardsAttributes

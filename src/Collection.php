@@ -1,12 +1,12 @@
 <?php
 
 
-namespace src;
+namespace Keperis;
 
 
 use ArrayIterator;
 use Exception;
-use src\Interfaces\CollectionInterface;
+use Keperis\Interfaces\CollectionInterface;
 
 class Collection implements CollectionInterface
 {

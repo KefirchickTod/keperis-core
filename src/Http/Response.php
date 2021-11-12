@@ -1,14 +1,14 @@
 <?php
 
 
-namespace src\Http;
+namespace Keperis\Http;
 
 
 use RuntimeException;
-use src\Interfaces\HeaderInterface;
-use src\Interfaces\ResponseInterface;
-use src\Interfaces\StreamInterface;
-use src\View\View;
+use Keperis\Interfaces\HeaderInterface;
+use Keperis\Interfaces\ResponseInterface;
+use Keperis\Interfaces\StreamInterface;
+use Keperis\View\View;
 
 
 class Response extends Message implements ResponseInterface

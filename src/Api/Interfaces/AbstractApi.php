@@ -1,13 +1,13 @@
 <?php
 
 
-namespace src\Api\Interfaces;
+namespace Keperis\Api\Interfaces;
 
 
 use App\Api\CreateApiFactory;
-use src\Controller\Api\ApiController;
-use src\Http\Request;
-use src\Interfaces\ResponseInterface;
+use Keperis\Controller\Api\ApiController;
+use Keperis\Http\Request;
+use Keperis\Interfaces\ResponseInterface;
 
 abstract class AbstractApi
 {

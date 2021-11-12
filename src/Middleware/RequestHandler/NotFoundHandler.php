@@ -1,12 +1,12 @@
 <?php
 
 
-namespace src\Middleware\RequestHandler;
+namespace Keperis\Middleware\RequestHandler;
 
 
-use src\Interfaces\Handler\RequestHandlerInterface;
-use src\Interfaces\ResponseInterface;
-use src\Middleware\RequestHandler;
+use Keperis\Interfaces\Handler\RequestHandlerInterface;
+use Keperis\Interfaces\ResponseInterface;
+use Keperis\Middleware\RequestHandler;
 
 class NotFoundHandler extends RequestHandler
 {

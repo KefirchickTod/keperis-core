@@ -1,13 +1,13 @@
 <?php
 
 
-namespace src\Page\FilterData;
+namespace Keperis\Page\FilterData;
 
 
 use Error;
 use Exception;
 
-use src\Eloquent\Provide\Commands\ProvideReceiver;
+use Keperis\Eloquent\Provide\Commands\ProvideReceiver;
 
 class Filter extends TransformationLogic
 {

@@ -1,11 +1,11 @@
 <?php
 
 
-namespace src\Http;
+namespace Keperis\Http;
 
 use http\Exception\InvalidArgumentException;
 use RuntimeException;
-use src\Interfaces\UploadedFileInterface;
+use Keperis\Interfaces\UploadedFileInterface;
 
 /**
  * Represents Uploaded Files.

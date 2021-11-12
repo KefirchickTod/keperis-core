@@ -1,7 +1,7 @@
 <?php
 
 
-namespace src\Page;
+namespace Keperis\Page;
 
 class Creator
 {

@@ -19,7 +19,7 @@ class FunctionTest extends TestCase
 
     public function test_router()
     {
-        $this->assertInstanceOf(\src\Router\Router::class, router());
+        $this->assertInstanceOf(\Keperis\Router\Router::class, router());
     }
 
     public function test_slug()
@@ -35,7 +35,7 @@ class FunctionTest extends TestCase
     {
         $html = html();
 
-        $this->assertInstanceOf(\src\Core\easyCreateHTML::class, $html);
+        $this->assertInstanceOf(\Keperis\Core\easyCreateHTML::class, $html);
 
         $text = $html->a()->end('a')->render(true);
 
@@ -77,7 +77,7 @@ class FunctionTest extends TestCase
     public function test_structure(){
         $structure = structure();
 
-        $this->assertInstanceOf(\src\Structure\Structure::class, $structure);
+        $this->assertInstanceOf(\Keperis\Structure\Structure::class, $structure);
 
     }
 }

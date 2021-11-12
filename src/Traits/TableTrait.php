@@ -1,19 +1,19 @@
 <?php
 
 
-namespace src\Traits;
+namespace Keperis\Traits;
 
 
 use Error;
-use src\Container;
+use Keperis\Container;
 
-use src\Interfaces\Buttons;
-use src\Interfaces\Paginator;
-use src\View\View;
+use Keperis\Interfaces\Buttons;
+use Keperis\Interfaces\Paginator;
+use Keperis\View\View;
 
 /**
  * Trait TableTrait
- * @package App\src\Traits
+ * @package App\Keperis\Traits
  * @property $structure Structure;
  * @property $dataArray array
  * @property $title

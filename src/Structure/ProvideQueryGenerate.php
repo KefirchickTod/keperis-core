@@ -1,9 +1,9 @@
 <?php
 
 
-namespace src\Structure;
+namespace Keperis\Structure;
 
-use src\Http\Request;
+use Keperis\Http\Request;
 
 class ProvideQueryGenerate
 {

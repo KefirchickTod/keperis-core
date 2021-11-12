@@ -1,10 +1,10 @@
 <?php
 
 
-namespace src\Interfaces;
+namespace Keperis\Interfaces;
 
 
-use src\Http\Session;
+use Keperis\Http\Session;
 
 interface SessionInterface
 {

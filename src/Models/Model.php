@@ -1,22 +1,22 @@
 <?php
 
 
-namespace src\Models;
+namespace Keperis\Models;
 
 
 use App\Models\Dictionary\DictionaryModel;
 use App\Provides\Mask;
 use Error;
-use src\Collection;
-use src\Core\Database\DatabaseAdapter;
-use src\Core\Database\DatabaseInfoScheme;
-use src\Core\DB;
-use src\Core\Page\PageCreator;
-use src\Interfaces\ModelInterface;
-use src\Structure\Structure;
-use src\Traits\HasAttributes;
-use src\Traits\ModelTableTrait;
-use src\Xlsx\Import\Renderer\Render;
+use Keperis\Collection;
+use Keperis\Core\Database\DatabaseAdapter;
+use Keperis\Core\Database\DatabaseInfoScheme;
+use Keperis\Core\DB;
+use Keperis\Core\Page\PageCreator;
+use Keperis\Interfaces\ModelInterface;
+use Keperis\Structure\Structure;
+use Keperis\Traits\HasAttributes;
+use Keperis\Traits\ModelTableTrait;
+use Keperis\Xlsx\Import\Renderer\Render;
 
 class Model extends Collection implements ModelInterface
 {

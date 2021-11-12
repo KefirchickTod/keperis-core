@@ -1,7 +1,7 @@
 <?php
 
 
-namespace src\Interfaces;
+namespace Keperis\Interfaces;
 
 
 use ArrayIterator;

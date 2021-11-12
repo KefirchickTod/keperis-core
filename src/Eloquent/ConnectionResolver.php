@@ -1,7 +1,7 @@
 <?php
 
 
-namespace src\Eloquent;
+namespace Keperis\Eloquent;
 
 
 use Illuminate\Database\ConnectionResolver as ParentResolver;

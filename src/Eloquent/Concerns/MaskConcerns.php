@@ -1,12 +1,12 @@
 <?php
 
 
-namespace src\Eloquent\Concerns;
+namespace Keperis\Eloquent\Concerns;
 
 
-use src\Core\Page\PageCreator;
-use src\Interfaces\ProvideMask as ProvideMaskInterface;
-use src\Traits\ModelTableTrait;
+use Keperis\Core\Page\PageCreator;
+use Keperis\Interfaces\ProvideMask as ProvideMaskInterface;
+use Keperis\Traits\ModelTableTrait;
 
 trait MaskConcerns
 {

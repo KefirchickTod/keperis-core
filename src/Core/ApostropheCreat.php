@@ -1,7 +1,7 @@
 <?php
 
 
-namespace src\Core;
+namespace Keperis\Core;
 
 class ApostropheCreat
 {

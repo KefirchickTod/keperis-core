@@ -1,7 +1,7 @@
 <?php
 
 
-namespace src\Eloquent\Provide;
+namespace Keperis\Eloquent\Provide;
 
 
 use Illuminate\Database\Query\Builder;

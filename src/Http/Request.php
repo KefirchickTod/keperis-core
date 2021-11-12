@@ -1,17 +1,17 @@
 <?php
 
 
-namespace src\Http;
+namespace Keperis\Http;
 
 
 use Closure;
 use Error;
 use InvalidArgumentException;
 use RuntimeException;
-use src\Collection;
-use src\Interfaces\HeaderInterface;
-use src\Interfaces\SessionInterface;
-use src\Interfaces\UriInterface;
+use Keperis\Collection;
+use Keperis\Interfaces\HeaderInterface;
+use Keperis\Interfaces\SessionInterface;
+use Keperis\Interfaces\UriInterface;
 
 class Request extends Message
 {

@@ -1,14 +1,14 @@
 <?php
 
 
-namespace src\Structure;
+namespace Keperis\Structure;
 
 
 use App\Provides\ProvideStructures\bcUser;
 use Closure;
 use Error;
 use Exception;
-use src\MiddlewareProvideTableTrait;
+use Keperis\MiddlewareProvideTableTrait;
 
 class Structure
 {

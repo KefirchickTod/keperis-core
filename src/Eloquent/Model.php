@@ -1,11 +1,11 @@
 <?php
 
 
-namespace src\Eloquent;
+namespace Keperis\Eloquent;
 
 
-use src\Eloquent\Concerns\ImportXlsx;
-use src\Eloquent\Concerns\MaskConcerns;
+use Keperis\Eloquent\Concerns\ImportXlsx;
+use Keperis\Eloquent\Concerns\MaskConcerns;
 
 abstract class Model extends \Illuminate\Database\Eloquent\Model
 {

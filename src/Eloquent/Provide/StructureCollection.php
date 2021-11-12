@@ -1,11 +1,11 @@
 <?php
 
 
-namespace src\Eloquent\Provide;
+namespace Keperis\Eloquent\Provide;
 
 
-use src\Collection;
-use src\Structure\ProvideStructures;
+use Keperis\Collection;
+use Keperis\Structure\ProvideStructures;
 use TypeError;
 
 class StructureCollection extends Collection

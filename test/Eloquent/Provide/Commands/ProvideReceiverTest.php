@@ -1,9 +1,9 @@
 <?php
 
-namespace src\Eloquent\Provide\Commands;
+namespace Keperis\Eloquent\Provide\Commands;
 
 use PHPUnit\Framework\TestCase;
-use src\Eloquent\Provide\StructureCollection;
+use Keperis\Eloquent\Provide\StructureCollection;
 
 class ProvideReceiverTest extends TestCase
 {

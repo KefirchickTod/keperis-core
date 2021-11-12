@@ -1,11 +1,11 @@
 <?php
 
 
-namespace src\Page\Components\Table;
+namespace Keperis\Page\Components\Table;
 
 
 
-use src\Page\Components\TableComponent;
+use Keperis\Page\Components\TableComponent;
 
 class TFooter implements TableEntity
 {

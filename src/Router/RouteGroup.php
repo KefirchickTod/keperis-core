@@ -1,12 +1,12 @@
 <?php
 
 
-namespace src\Router;
+namespace Keperis\Router;
 
 
 use Closure;
-use src\App;
-use src\Traits\CallableResolverAwareTrait;
+use Keperis\App;
+use Keperis\Traits\CallableResolverAwareTrait;
 
 class RouteGroup extends Routeable
 {

@@ -1,11 +1,11 @@
 <?php
 
 
-namespace src\Page;
+namespace Keperis\Page;
 
 
-use src\EventDispatcher\Concerns\DelegatesToDisptacher;
-use src\Interfaces\ProvideMask;
+use Keperis\EventDispatcher\Concerns\DelegatesToDisptacher;
+use Keperis\Interfaces\ProvideMask;
 
 abstract class Component
 {

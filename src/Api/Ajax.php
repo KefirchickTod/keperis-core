@@ -1,10 +1,10 @@
 <?php
 
 
-namespace src\Api;
+namespace Keperis\Api;
 
 
-use src\Api\Interfaces\AbstractApi;
+use Keperis\Api\Interfaces\AbstractApi;
 
 class Ajax extends AbstractApi
 {

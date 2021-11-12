@@ -1,11 +1,11 @@
 <?php
 
-namespace src\Eloquent\Provide\Commands;
+namespace Keperis\Eloquent\Provide\Commands;
 
-use src\Eloquent\Provide\Processes\ProvideStructureProcessor;
-use src\Http\Request;
-use src\Interfaces\Command\CommandInterface;
-use src\Structure\ProvideStructures;
+use Keperis\Eloquent\Provide\Processes\ProvideStructureProcessor;
+use Keperis\Http\Request;
+use Keperis\Interfaces\Command\CommandInterface;
+use Keperis\Structure\ProvideStructures;
 
 abstract class UriRequestCommand extends ProvideStructureProcessor implements CommandInterface
 {

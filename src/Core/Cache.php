@@ -1,11 +1,11 @@
 <?php
 
 
-namespace src\Core;
+namespace Keperis\Core;
 
 
-use src\Collection;
-use src\Http\Stream;
+use Keperis\Collection;
+use Keperis\Http\Stream;
 
 /**
  * Class Cache

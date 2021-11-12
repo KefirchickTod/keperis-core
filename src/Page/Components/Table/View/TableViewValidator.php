@@ -1,9 +1,9 @@
 <?php
 
-namespace src\Page\Components\Table\View;
+namespace Keperis\Page\Components\Table\View;
 
-use src\View\ValidatorInterface;
-use src\View\Validators\Validator;
+use Keperis\View\ValidatorInterface;
+use Keperis\View\Validators\Validator;
 
 class TableViewValidator implements ValidatorInterface
 {

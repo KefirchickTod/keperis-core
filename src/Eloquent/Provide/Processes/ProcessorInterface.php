@@ -1,10 +1,10 @@
 <?php
 
 
-namespace src\Eloquent\Provide\Processes;
+namespace Keperis\Eloquent\Provide\Processes;
 
 
-use src\Eloquent\Provide\StructureCollection;
+use Keperis\Eloquent\Provide\StructureCollection;
 
 interface ProcessorInterface
 {

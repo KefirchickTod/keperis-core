@@ -1,11 +1,11 @@
 <?php
 
 
-namespace src\Middleware;
+namespace Keperis\Middleware;
 
 
-use src\Interfaces\Handler\RequestHandlerInterface;
-use src\Interfaces\ResponseInterface;
+use Keperis\Interfaces\Handler\RequestHandlerInterface;
+use Keperis\Interfaces\ResponseInterface;
 
 class RequestHandler implements RequestHandlerInterface
 {

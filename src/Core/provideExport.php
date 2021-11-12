@@ -1,13 +1,13 @@
 <?php
 
 
-namespace src\Core;
+namespace Keperis\Core;
 
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use src\Core\Page\PageCreator;
-use src\EventDispatcher\Concerns\DelegatesToDisptacher;
-use src\MiddlewareProvideTableTrait;
+use Keperis\Core\Page\PageCreator;
+use Keperis\EventDispatcher\Concerns\DelegatesToDisptacher;
+use Keperis\MiddlewareProvideTableTrait;
 
 class provideExport
 {

@@ -1,34 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
 <phpunit
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/latest/phpunit.xsd"
+        bootstrap="vendor/autoload.php"
         backupGlobals="true"
         backupStaticAttributes="false"
-        bootstrap="/vendor/autoload.php"
         cacheResult="false"
         cacheTokens="false"
         colors="true"
         convertErrorsToExceptions="true"
         convertNoticesToExceptions="true"
         convertWarningsToExceptions="true"
-        forceCoversAnnotation="false"
-        printerClass="PHPUnitTextUIResultPrinter"
-        <!--printerFile="/path/to/ResultPrinter.php"-->
         processIsolation="false"
-        stopOnError="false"
         stopOnFailure="false"
-        stopOnIncomplete="false"
-        stopOnSkipped="false"
-        stopOnRisky="false"
-        testSuiteLoaderClass="PHPUnitRunnerStandardTestSuiteLoader"
-        <!--testSuiteLoaderFile="/path/to/StandardTestSuiteLoader.php"-->
-        timeoutForSmallTests="1"
-        timeoutForMediumTests="10"
-        timeoutForLargeTests="60"
-        verbose="false">
+        syntaxCheck="false"
+>
 
+    <testsuites>
+        <testsuite name="Keperis initial test">
 
-
-
-
+            <direcotry>test</direcotry>
+        </testsuite>
+    </testsuites>
 
 </phpunit>

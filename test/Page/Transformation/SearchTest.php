@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 use Keperis\Page\DataTransformation;
 use Keperis\Structure\ProvideStructures;
 
-class bcTest extends ProvideStructures
+class bcTestSearch extends ProvideStructures
 {
     protected $sqlSetting = [
         'table'       => 'none',
@@ -37,7 +37,7 @@ class SearchTest extends TestCase
                 'fullName',
 
             ],
-            'class' => bcTest::class,
+            'class' => bcTestSearch::class,
         ];
         $transformation = new DataTransformation($structure);
         $transformation->addFilter(Search::class);

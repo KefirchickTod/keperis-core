@@ -50,43 +50,43 @@ class StructureCollectionTest extends TestCase
         $this->assertEquals([new bcTest], $controllers);
     }
 
-    public function testGetSetting()
-    {
-
-    }
-
-    public function testSetSetting()
-    {
-
-    }
-
-    public function testHasSetting()
-    {
-
-    }
-
-    public function testGetKey()
-    {
-
-    }
-
-    public function testHasInGetParam()
-    {
-
-    }
-
-    public function testGetJoin()
-    {
-
-    }
-
-    public function testSetGet()
-    {
-
-    }
-
-    public function testGetGet()
-    {
-
-    }
+//    public function testGetSetting()
+//    {
+//
+//    }
+//
+//    public function testSetSetting()
+//    {
+//
+//    }
+//
+//    public function testHasSetting()
+//    {
+//
+//    }
+//
+//    public function testGetKey()
+//    {
+//
+//    }
+//
+//    public function testHasInGetParam()
+//    {
+//
+//    }
+//
+//    public function testGetJoin()
+//    {
+//
+//    }
+//
+//    public function testSetGet()
+//    {
+//
+//    }
+//
+//    public function testGetGet()
+//    {
+//
+//    }
 }

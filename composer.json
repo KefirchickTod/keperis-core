@@ -30,7 +30,10 @@
   "autoload": {
     "psr-4": {
       "Keperis\\": "src/"
-    }
+    },
+    "files": [
+      "src/helper.php"
+    ]
   },
   "config": {
     "sort-packages": true,

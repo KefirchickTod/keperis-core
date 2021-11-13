@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 use Keperis\Page\DataTransformation;
 use Keperis\Structure\ProvideStructures;
 
-class bcTest extends ProvideStructures
+class bcTestSort extends ProvideStructures
 {
     protected $sqlSetting = [
         'table' => 'none',
@@ -26,7 +26,7 @@ class SortTest extends TestCase
             'get' => [
                 'fullName'
             ],
-            'class' => bcTest::class,
+            'class' => bcTestSort::class,
         ];
 
         $transformation = new DataTransformation($structure);

@@ -3,7 +3,7 @@
 namespace Keperis;
 
 
-class UMask extends \App\Provides\Mask
+class UMask extends \Keperis\Page\Components\Table\Mask
 {
     protected $title = [
         'list' => [

@@ -24,5 +24,3 @@ and for commits using <a href="https://github.com/angular/angular/blob/master/CO
   │
   └─⫸ Commit Type: build|ci|docs|feat|fix|perf|refactor|test
 ````
-## Author
-- Zahar Pylypchuck <zacharpu2@gmail.com>

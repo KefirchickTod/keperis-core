@@ -50,6 +50,9 @@ class StructureCollection extends Collection
     }
 
 
+    /**
+     * @return array|StructureCollection[]|mixed|null
+     */
     public function getJoin()
     {
         if (!$this->hasSetting('join')) {

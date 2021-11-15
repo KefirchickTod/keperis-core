@@ -88,6 +88,11 @@ abstract class ProvideTemplate implements ProvideTemplateInterface
         return $result;
     }
 
+    /**
+     * Helper function for convert parse template and normal to  look
+     * @param array $template
+     * @return mixed
+     */
     public function convertTemplate($template)
     {
 
@@ -97,7 +102,7 @@ abstract class ProvideTemplate implements ProvideTemplateInterface
 
             if (sizeof($select) > 1) {
 
-                foreach ($select as $i => $value){
+                foreach ($select as $i => $value) {
                     $template['templates'] = preg_replace("/%_select_{$i}_%/", $select[$i], $template['templates']);
                 }
 
@@ -105,9 +110,12 @@ abstract class ProvideTemplate implements ProvideTemplateInterface
             } else {
                 $template['template'] = preg_replace('/%_select_%/', $select, $template['templates']);
             }
+
+            $template['select'] = $template['template'];
         }
 
-        return $template;
+
+        return $template['select'];
 
     }
 

@@ -126,8 +126,5 @@ class ProvideStructure implements ListenerProviderInterface
         yield from  $this->listener->getForEvent(get_class($event));
     }
 
-    public function execute()
-    {
 
-    }
 }

@@ -4,37 +4,69 @@
 namespace Keperis\Eloquent\Provide;
 
 
-class Structure
+use Keperis\Eloquent\Provide\Exception\StructureValidatorException;
+
+class Structure implements StructureInterface
 {
 
     /**
-     * @var ProvideStructure[]
+     * Key (name) structure
+     * @var null|string
      */
-    private $collection;
+    protected $key = null;
 
-    public function __construct()
+    /**
+     * Body of structure
+     * @var null|ProvideStructure
+     */
+    protected $structure = null;
+
+    /**
+     * @var array
+     */
+    public static $resolved = [];
+
+    /**
+     * @param array $structure
+     * @param string $key
+     * @return static
+     */
+    public function set(array $structure, string $key)
     {
-        $this->collection = [];
+        if (!StructureValidate::checkValidate($structure)) {
+            throw new StructureValidatorException(sprintf("Error of validate structure with key [%s]", $key));
+        }
+
+        $clone = clone $this;
+
+        $clone->structure = new ProvideStructure(new StructureCollection($key, $structure));
+        $clone->key = $key;
+
+        return $clone;
+    }
+
+
+
+    public function __clone()
+    {
+        $this->structure = null;
+        $this->key = null;
     }
 
     /**
-     * @param string $key
-     * @return array[]|ProvideStructure
+     * @param string|null $key
+     * @return mixed
      */
-    public function get(string $key)
+    public function get(?string $key = null)
     {
-        if (!array_key_exists($key, $this->collection)) {
-            return $this->collection[$key];
+        $key = $key ?: $this->key;
+
+        if (array_key_exists($key, self::$resolved)) {
+            return self::$resolved[$key];
         }
+
+        self::$resolved[$key] = [];
         return [];
-    }
 
-    public function set($structure, string $key = '')
-    {
-        $provide = new ProvideStructure(new StructureCollection($key, $structure));
-
-        $this->collection[$key ?: key($structure)] = $provide;
-
-        return $provide;
     }
 }

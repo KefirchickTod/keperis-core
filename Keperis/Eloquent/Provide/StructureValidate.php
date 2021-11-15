@@ -1,8 +1,10 @@
 <?php
 
-namespace Keperis\Structure;
+namespace Keperis\Eloquent\Provide;
 
-use Keperis\Structure\Exception\StructureValidatorException;
+use Keperis\Eloquent\Provide\Exception\StructureValidatorException;
+
+
 
 class StructureValidate implements Validator
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Keperis\Structure;
+namespace Keperis\Eloquent\Provide;
 
 use PHPUnit\Framework\TestCase;
 

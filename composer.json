@@ -21,6 +21,7 @@
     "phpoffice/phpspreadsheet": "^1.19",
     "pimple/pimple": "^3.2",
     "spatie/laravel-query-builder": "^4.0",
+    "symfony/event-dispatcher": "^5.3",
     "vlucas/phpdotenv": "^5.2"
   },
   "require-dev": {
@@ -29,7 +30,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Keperis\\": "src/"
+      "Keperis\\": "Keperis/"
     },
     "files": [
       "src/helper.php"

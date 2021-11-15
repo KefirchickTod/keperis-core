@@ -1,13 +1,12 @@
 <?php
 
-namespace Keperis\Page\Components\Table\View;
+namespace Keperis\Page\Components;
 
 use Keperis\View\ValidatorInterface;
 use Keperis\View\Validators\Validator;
 
-class TableViewValidator implements ValidatorInterface
+class ComponentViewValidator implements ValidatorInterface
 {
-
     static private $types = [
         Validator::VIEW_VALIDATOR_PHP_EXTENSION,
         Validator::VIEW_VALIDATOR_HTML_EXTENSION,

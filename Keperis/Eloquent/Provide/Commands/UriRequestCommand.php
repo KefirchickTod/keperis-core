@@ -3,9 +3,10 @@
 namespace Keperis\Eloquent\Provide\Commands;
 
 use Keperis\Eloquent\Provide\Processes\ProvideStructureProcessor;
+use Keperis\Eloquent\Provide\ProvideTemplate;
 use Keperis\Http\Request;
 use Keperis\Interfaces\Command\CommandInterface;
-use Keperis\Structure\ProvideStructures;
+
 
 abstract class UriRequestCommand extends ProvideStructureProcessor implements CommandInterface
 {
@@ -33,7 +34,7 @@ abstract class UriRequestCommand extends ProvideStructureProcessor implements Co
     }
 
     /**
-     * @return ProvideStructures
+     * @return ProvideTemplate
      */
     public function strucutreController()
     {

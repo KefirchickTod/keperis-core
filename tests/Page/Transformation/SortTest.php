@@ -4,9 +4,9 @@ namespace Keperis\Page\FilterData;
 
 use PHPUnit\Framework\TestCase;
 use Keperis\Page\DataTransformation;
-use Keperis\Structure\ProvideStructures;
 
-class bcTestSort extends ProvideStructures
+
+class bcTestSort extends ProvideTemplate
 {
     protected $sqlSetting = [
         'table' => 'none',

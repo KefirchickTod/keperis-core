@@ -6,7 +6,7 @@ namespace Keperis\Page;
 
 use Keperis\Eloquent\Provide\Commands\ProvideReceiver;
 use Keperis\Eloquent\Provide\StructureCollection;
-use Keperis\Structure\StructureFilters\StructureFilterData;
+use Keperis\Eloquent\Concerns\StructureFilterData;
 
 class DataTransformation
 {

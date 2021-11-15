@@ -5,7 +5,7 @@ namespace Keperis\Eloquent\Provide;
 
 
 use Keperis\Collection;
-use Keperis\Structure\ProvideStructures;
+
 use TypeError;
 
 class StructureCollection extends Collection
@@ -28,7 +28,7 @@ class StructureCollection extends Collection
     protected $get = [];
 
     /**
-     * @var ProvideStructures
+     * @var ProvideTemplate
      */
     protected $controller;
 
@@ -107,6 +107,7 @@ class StructureCollection extends Collection
 
     /**
      * @return array
+     * @throws \Exception
      */
     public function getGet(): array
     {
@@ -140,9 +141,9 @@ class StructureCollection extends Collection
     }
 
     /**
-     * @return ProvideStructures
+     * @return ProvideTemplate
      */
-    public function getController(): ProvideStructures
+    public function getController(): ProvideTemplate
     {
 
         if (!$this->controller) {

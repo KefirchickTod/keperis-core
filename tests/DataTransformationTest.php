@@ -2,13 +2,13 @@
 
 namespace Keperis\Page;
 
+use Keperis\Eloquent\Provide\ProvideTemplate;
 use PHPUnit\Framework\TestCase;
 use Keperis\Eloquent\Provide\Commands\ProvideReceiver;
-use Keperis\Eloquent\Provide\StructureCollection;
-use Keperis\Structure\ProvideStructures;
 
 
-class bcTest extends ProvideStructures
+
+class bcTestSort extends ProvideTemplate
 {
     protected $sqlSetting = [
         'table' => 'none',
@@ -17,6 +17,15 @@ class bcTest extends ProvideStructures
             'type' => 'string',
         ],
     ];
+
+    /**
+     * Get resolve name for quick copy obj
+     * @return string
+     */
+    public function getResolveName(): string
+    {
+        return 'test';
+    }
 }
 
 class Sort
@@ -56,7 +65,7 @@ class DataTransformationTest extends TestCase
                 'fullName'
             ],
 
-            'class' => bcTest::class,
+            'class' => bcTestSort::class,
         ];
         $transformation = new DataTransformation($structure);
 

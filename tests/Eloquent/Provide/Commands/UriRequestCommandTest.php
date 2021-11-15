@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 use Keperis\Http\Request;
 use Keperis\Http\ServerData;
 use Keperis\Http\Uri;
-use Keperis\Structure\ProvideStructures;
+
 
 class SimulateCommand extends UriRequestCommand
 {
@@ -18,7 +18,7 @@ class SimulateCommand extends UriRequestCommand
     }
 }
 
-class bcTest extends ProvideStructures
+class bcTest extends ProvideTemplate
 {
     protected $sqlSetting = [
         'table' => 'none',

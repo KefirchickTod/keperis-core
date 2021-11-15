@@ -33,7 +33,7 @@
       "Keperis\\": "Keperis/"
     },
     "files": [
-      "src/helper.php"
+      "Keperis/helper.php"
     ]
   },
   "config": {

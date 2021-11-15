@@ -5,7 +5,7 @@
         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.5/phpunit.xsd"
         beStrictAboutChangesToGlobalState="true"
         beStrictAboutOutputDuringTests="true"
-        colors="true"
+        colors="false"
         bootstrap="tests/bootstrap.php"
         executionOrder="random"
         stopOnFailure="false"

@@ -4,7 +4,7 @@ namespace Keperis\Page\FilterData;
 
 use Keperis\Eloquent\Provide\StructureCollection;
 
-use Keperis\Structure\ProvideStructures;
+
 
 abstract class TransformationLogic
 {
@@ -28,7 +28,7 @@ abstract class TransformationLogic
         $controllers = $this->structure->getControllers();
         $values = [];
         foreach ($controllers as $controller) {
-            /** @param $controller ProvideStructures */
+            /** @param $controller ProvideTemplate */
             $values = array_merge($values, $controller->getAllWhereType($type));
         }
         return $values;

@@ -931,7 +931,7 @@ if (!function_exists('getUserNameArray')) {
                     'firstName',
                     'secondName',
                 ],
-                'class'   => \App\Provides\ProvideStructures\bcUser::class,
+                'class'   => \App\Provides\ProvideTemplate\bcUser::class,
                 'setting' => [
                     'where' => "bc_user_id IN ($in)",
                 ],

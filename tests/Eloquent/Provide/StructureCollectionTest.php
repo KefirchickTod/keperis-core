@@ -3,9 +3,9 @@
 namespace Keperis\Eloquent\Provide;
 
 use PHPUnit\Framework\TestCase;
-use Keperis\Structure\ProvideStructures;
 
-class bcTest extends ProvideStructures
+
+class bcTest extends ProvideTemplate
 {
     protected $sqlSetting = [
         'table' => 'none',

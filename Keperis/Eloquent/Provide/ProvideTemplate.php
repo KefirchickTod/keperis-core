@@ -2,15 +2,17 @@
 
 namespace Keperis\Eloquent\Provide;
 
-use Keperis\Collection;
 
-abstract class ProvideTemplate
+use Keperis\Eloquent\Provide\Exception\ProvideTemplateException;
+use Keperis\Eloquent\Provide\Template\ProvideTemplateInterface;
+
+abstract class ProvideTemplate implements ProvideTemplateInterface
 {
     /**
      * List of ignore column in property sql setting
      * @var string[]
      */
-    public static $exception = ['table', 'id', 'prefix', 'size'];
+    public static $exception = ['table', 'id', 'size'];
 
     /**
      * List of default select settings
@@ -19,7 +21,6 @@ abstract class ProvideTemplate
     protected static $guard = [
         'select',
         'as',
-        'type',
     ];
 
     /**
@@ -31,10 +32,6 @@ abstract class ProvideTemplate
         'templates',
     ];
 
-    /**
-     * @var string
-     */
-    protected $name;
 
     /**
      * Templates for render queries
@@ -91,5 +88,73 @@ abstract class ProvideTemplate
         return $result;
     }
 
+    public function convertTemplate($template)
+    {
+
+        $select = is_array($template['select']) ? $template['select'] : [$template['select']];
+
+        if (array_key_exists('templates', $template)) {
+
+            if (sizeof($select) > 1) {
+
+                foreach ($select as $i => $value){
+                    $template['templates'] = preg_replace("/%_select_{$i}_%/", $select[$i], $template['templates']);
+                }
+
+
+            } else {
+                $template['template'] = preg_replace('/%_select_%/', $select, $template['templates']);
+            }
+        }
+
+        return $template;
+
+    }
+
+    /**
+     * Get template if invalid format throw exception
+     * @param string $key
+     * @return mixed
+     */
+    public function getTemplate(string $key)
+    {
+        if (!$this->temp->has($key)) {
+            throw new ProvideTemplateException(sprintf("Invalid key [%s] for find template ", $key));
+        }
+
+        $template = $this->temp->get($key);
+
+        if (in_array($key, self::$exception)) {
+            return $template;
+        }
+
+        foreach (self::$guard as $item) {
+            if (!array_key_exists($item, $template)) {
+                throw new \RuntimeException(sprintf("Get invalid template block and cant find item [%s]", $item));
+            }
+        }
+
+        return $template;
+    }
+
+
+    /**
+     * Get all templates from class
+     * @param string ...$keys
+     * @return array
+     */
+    public function getTemplates(...$keys)
+    {
+        if (!$keys) {
+            return $this->temp->toArray();
+        }
+
+        $result = [];
+        foreach ($keys as $key) {
+
+            array_push($result, $this->getTemplate($key));
+        }
+        return $result;
+    }
 
 }

@@ -105,7 +105,8 @@ class StructureCollection extends Collection
 
     public function hasSetting($key)
     {
-        return array_key_exists($key, $this->get('setting', []));
+
+        return array_key_exists($key, $this->get('setting', [])) && $this->get('setting')[$key];
     }
 
     /**

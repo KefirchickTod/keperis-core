@@ -25,4 +25,15 @@
             <html outputDirectory="coverage" lowUpperBound="20" highLowerBound="50"/>
         </report>
     </coverage>
+
+    <php>
+        <env name="DB_CONNECTION" value="mysql"/>
+        <env name="DB_HOST" value="127.0.0.1"/>
+        <env name="DB_PORT" value="3306"/>
+        <env name="DB_NAME" value="bcclub_crm"/>
+        <env name="DB_UTC" value="+2:00"/>
+        <env name="DB_USER" value="root"/>
+        <env name="DB_PASS" value="root"/>
+    </php>
+
 </phpunit>

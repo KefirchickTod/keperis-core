@@ -90,21 +90,20 @@ class ProvideTemplateTest extends TestCase
         [$temp1, $temp2] = self::createTemplate()->getTemplates('select1', 'select2');
 
 
-        $temp1 = self::createTemplate()->convertTemplate($temp1);
+        $temp1 = (self::createTemplate())::convertTemplate($temp1);
 
-        $this->assertSame([
+
+        $this->assertEquals([
             'select' => 'convert_to_test1',
             'as' => 'test1'
         ], $temp1);
 
 
         $this->assertSame([
-            'select' => [
-                'sw1', 'sw2'
-            ],
+            'select' => 'GROUP_CONTCAT(sw1, sw2)',
             'as' => 'sw_s',
             'templates' => 'GROUP_CONTCAT(sw1, sw2)'
-        ], self::createTemplate()->convertTemplate($temp2));
+        ], (self::createTemplate())::convertTemplate($temp2));
     }
 
     public function testGetResolveName()

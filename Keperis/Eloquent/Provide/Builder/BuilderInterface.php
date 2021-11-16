@@ -15,4 +15,10 @@ interface BuilderInterface
      * @return BuilderInterface
      */
     public function build();
+
+
+    /**
+     * @return string
+     */
+    public function toSql() : string;
 }

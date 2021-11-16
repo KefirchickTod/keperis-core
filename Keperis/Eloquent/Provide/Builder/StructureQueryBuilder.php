@@ -6,10 +6,16 @@ namespace Keperis\Eloquent\Provide\Builder;
 
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\DB;
+use Keperis\Eloquent\Provide\Exception\StructureValidatorException;
+use Keperis\Eloquent\Provide\ProvideTemplate;
 use Keperis\Eloquent\Provide\StructureCollection;
+use Keperis\MiddlewareTrait;
+
 
 class StructureQueryBuilder implements BuilderInterface
 {
+
+    use MiddlewareTrait;
 
     /**
      * @var StructureCollection
@@ -22,38 +28,151 @@ class StructureQueryBuilder implements BuilderInterface
     private $table;
 
 
-    protected $query = [];
+    /**
+     * Parsed pattern from all structures {get} key
+     * @var array
+     */
+    protected $patterns = [];
+
+
+    protected static $resolveControllers = [];
 
     public function __construct(StructureCollection $structure)
     {
+
         $this->structure = $structure;
-        $this->table = DB::table($structure->getController()->getOriginTableName());
+
+        /**
+         * @return \PDO
+         */
+        $pdo = static function () {
+            $c = container()->connection->getPdo();
+            $c->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+            $c->setAttribute(\PDO::ATTR_CASE, \PDO::CASE_NATURAL);
+            $c->exec("SET time_zone = '" . date('P') . "'");
+            $c->exec('SET names utf8');
+            return $c;
+        };
+
+        $this->table = new Builder(container()->connection->setPdo($pdo()));
+        $this->table->fromRaw($this->structure->getController()->getOriginTableName());
+
+        $this->boot();
     }
+
+
+    /**
+     * Check if is valid pattern format
+     * Each pattern in structure must pass a middlewere
+     * @param array|null $pattern
+     * @return bool
+     */
+    private function isValid(?array $pattern)
+    {
+        if (!is_array($pattern)) {
+            return false;
+        }
+        return array_key_exists('render', $pattern);
+    }
+
+    /**
+     * @param array|null $pattern
+     * @param ProvideTemplate $controller
+     * @return array|null
+     */
+    public function __invoke(?array $pattern, ProvideTemplate $controller): ?array
+    {
+        if ($this->isValid($pattern)) {
+            return $pattern;
+        }
+
+        $pattern['render'] = ProvideTemplate::convertTemplate($pattern)['select'];
+
+        return $pattern;
+
+    }
+
+    /**
+     * @param array|null $pattern
+     * @return array
+     */
+    protected function convertToFormat(?array $pattern)
+    {
+        if (!$pattern) {
+            throw new StructureValidatorException("Invalid format for convert pattern to special format, can be only array type");
+        }
+
+        $newPatterns = [];
+        foreach ($pattern as $controller => $value) {
+            /** @var ProvideTemplate $controller */
+            $controller = self::$resolveControllers[$controller];
+            foreach ($value as $item){
+                $p = $this->callMiddlewareStack($controller->getTemplate($item), $controller);
+                if (!$p) {
+                    throw new \ParseError(sprintf("Cant parse pattern for controller [%s]", get_class($controller)));
+                }
+                $newPatterns[] = $p;
+            }
+
+        }
+
+        return $newPatterns;
+    }
+
+    /**
+     * Parse all get param form structure
+     * @throws \Exception
+     */
+    protected function boot()
+    {
+
+
+        self::$resolveControllers[get_class($this->structure->getController())] = $this->structure->getController();
+
+        $patterns = [get_class($this->structure->getController()) => $this->structure->getGet()];
+
+        $join = $this->structure->getJoin();
+
+        foreach ($join as $item) {
+            if (!$item) {
+                throw new StructureValidatorException("Invalid join parse format");
+            }
+            self::$resolveControllers[get_class($item)] = $item;
+            $patterns[get_class($item)] = $item->getGet();
+
+        }
+
+        $this->patterns = $this->convertToFormat($patterns);
+    }
+
 
     public function createSelect()
     {
 
-        $templates = $this->structure->getController()->getTemplates($this->structure->getGet());
+        foreach ($this->patterns as $template) {
 
-        foreach ($templates as $template) {
-            if (array_key_exists('join', $template)) {
-                $this->query['join'][] = $template['join'];
-            }
-            $this->query['select'][] = $this
-                ->structure
-                ->getController()
-                ->convertTemplate($template['select']);
+            $q = "{$template['render']} " . (array_key_exists('as', $template) ? "as {$template['as']}" : "");
+
+
+            $this->table->selectRaw($q);
         }
+
 
     }
 
     public function createWhere()
     {
-        if($this->structure->hasSetting('where')){
-            $this->query['where'][] = $this->structure->getSetting('where');
+
+        if ($this->structure->hasSetting('where')) {
+            $where = $this->structure->getSetting('where');
+
+            if (is_array($where)) {
+                $where = implode(" AND ", $where);
+            }
+
+            $this->table->whereRaw($where);
         }
     }
-
 
 
     public function createJoin()
@@ -93,20 +212,73 @@ class StructureQueryBuilder implements BuilderInterface
         }
     }
 
+
+    /**
+     * @param string $pattern
+     * @return string
+     */
+    private function replacePatternOrNot(string $pattern)
+    {
+        $replace = function ($v) {
+            $controllers = $this->structure->getControllers();
+
+            foreach ($controllers as $controller) {
+                if ($controller->hasTemplate($v)) {
+                    return $controller->getTemplate($v);
+                }
+            }
+            return $v;
+        };
+
+        if (strpos(',', $pattern) === false) {
+            return $replace($pattern);
+        }
+
+        $pattern = array_map(function ($val) use ($replace) {
+            return $replace(trim($val));
+        }, explode(',', $pattern));
+
+        return implode(', ', $pattern);
+    }
+
+
     public function createGroupBy()
     {
-        if ($this->structure->has('group')) {
-            $this->table->groupBy($this->structure->get('group'));
+        if ($this->structure->hasSetting('group')) {
+
+            $group = $this->replacePatternOrNot($this->structure->getSetting('group'));
+
+            $this->table->groupByRaw($group);
         }
+
     }
 
     public function createOrderBy()
     {
+        if ($this->structure->hasSetting('order')) {
+            $order = $this->structure->getSetting('order');
+
+            if (strpos('a_', $order) === false) {
+                $this->table->orderBy($order);
+            } else {
+
+                $order = preg_replace('/a_/', '', $order);
+                $this->table->orderByDesc($order);
+            }
+        }
     }
 
     public function createLimit()
     {
+        if ($this->structure->hasSetting('limit')) {
+            $q = explode(',', $this->structure->getSetting('limit'));
 
+            [$limit, $offset] = array_map(function ($v) {
+                return intval(trim($v));
+            }, $q);
+
+            $this->table->limit($limit)->offset($offset);
+        }
     }
 
     /**
@@ -115,6 +287,20 @@ class StructureQueryBuilder implements BuilderInterface
      */
     public function build()
     {
+        $this->createSelect();
+        $this->createJoin();
+        $this->createWhere();
+        $this->createOrderBy();
+        $this->createGroupBy();
+
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function toSql(): string
+    {
+        return $this->table->toSql();
     }
 }

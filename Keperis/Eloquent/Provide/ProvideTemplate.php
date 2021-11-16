@@ -93,7 +93,7 @@ abstract class ProvideTemplate implements ProvideTemplateInterface
      * @param array $template
      * @return mixed
      */
-    public function convertTemplate($template)
+    public static function convertTemplate($template)
     {
 
         $select = is_array($template['select']) ? $template['select'] : [$template['select']];
@@ -111,12 +111,20 @@ abstract class ProvideTemplate implements ProvideTemplateInterface
                 $template['template'] = preg_replace('/%_select_%/', $select, $template['templates']);
             }
 
-            $template['select'] = $template['template'];
+            $template['select'] = $template['templates'];
         }
 
 
-        return $template['select'];
+        return $template;
 
+    }
+
+    /**
+     * @param string $key
+     * @return bool
+     */
+    public function hasTemplate(string $key){
+        return $this->temp->has($key);
     }
 
     /**

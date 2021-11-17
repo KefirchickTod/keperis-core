@@ -4,126 +4,119 @@
 namespace Keperis\Eloquent\Provide;
 
 
-use Keperis\Eloquent\Provide\Processes\ProcessorInterface;
-use Keperis\EventDispatcher\Dispatcher\Dispatcher;
-use Keperis\EventDispatcher\Provider\ListenerCollection;
+use Keperis\Eloquent\Provide\Event\BuiltEvent;
+use Keperis\Eloquent\Provide\Event\ProvideEventInterface;
+use Keperis\Eloquent\Provide\ProvideEvents;
+use Keperis\Eloquent\Provide\Builder\StructureQueryBuilder;
+
+use Keperis\Eloquent\Provide\Event\RequestEvent;
+use Keperis\Http\Request;
 use Keperis\Interfaces\EventDispatcher\EventDispatcherInterface;
-use Keperis\Interfaces\EventDispatcher\ListenerProviderInterface;
 
-class ProvideStructure implements ListenerProviderInterface
+use Symfony\Component\EventDispatcher\EventDispatcher;
+
+class ProvideStructure
 {
-    /**
-     * @var ListenerCollection
-     */
-    protected $listener;
-    /**
-     * @var EventDispatcherInterface
-     */
-    protected $dispatcher;
-    /**
-     * Array of events
-     * @var array
-     */
-    private $events = [];
 
+    use ProvideEvents;
+
+    protected static $globalEvents = [];
     /**
-     * @var ProcessorInterface|null
+     * The event dispatcher instance.
+     *
+     * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
      */
-    private $processor = null;
+    protected static $dispatcher;
 
     /**
      * @var StructureCollection
      */
-    private $collection;
+    protected $collection;
+
+
+    /**
+     * Check if is checked basic processor or not
+     * @var bool
+     */
+    protected static $booted = false;
+
+    /**
+     * @var StructureQueryBuilder
+     */
+    protected $builder;
+
+    /**
+     * @param string $event
+     * @param string $className
+     */
+    public static function registerGlobalEvents(string $event, string $className)
+    {
+        static::$globalEvents = array_merge([$event, $className], static::$globalEvents);
+    }
 
     public function __construct(StructureCollection $collection)
     {
         $this->collection = $collection;
-        $this->listener = new ListenerCollection();
+        static::bootIfNot();
+
+        $this->dispatchesEvents = static::$globalEvents;
     }
 
-    public function getCollections()
+    public function bindRequest(Request $request)
     {
-        return $this->collection;
+        $event = $this->fireProvideEvent('request');
+        if ($event instanceof ProvideEventInterface) {
+            $this->collection = $event->getCollection();
+        }
     }
 
     /**
-     * Clone and set precessor with cleand listener collection
-     * @param string $processor
-     * @return ProvideStructure
+     * Register globals event params
      */
-    public function withProcessor(string $processor)
+    protected static function bootIfNot()
     {
+        if (static::$booted === false) {
+            self::bootDispatcher();
 
-        if (!class_exists($processor)) {
-            throw new \TypeError("Type of proccero must by link to class");
         }
+    }
 
-        $clone = clone $this;
-        $clone->processor = $processor;
-        return $clone;
+    private static function bootDispatcher()
+    {
+        static::$dispatcher = new EventDispatcher();
     }
 
     /**
-     * Register event for processor
-     * @param $event
-     * @return $this
+     * Set and trigger event {set.request}
+     * @param Request $request
      */
-    public function event($event)
+    public function fireRequest(Request $request)
     {
-        if (!is_callable($event)) {
-            throw new \InvalidArgumentException("Event must by callable");
+
+
+        $this->fireProvideEvent('set.request');
+    }
+
+    public function build()
+    {
+
+        if ($c = $this->fireProvideEvent('beforeBuild')) {
+            $this->collection = $c->getCollection();
         }
 
-        $this->events[] = $event;
-
-        return $this;
-    }
-
-    public function __clone()
-    {
-        $this->listener = new \Keperis\EventDispatcher\Provider\ListenerCollection();
-    }
+        $builder = new StructureQueryBuilder($this->collection);
 
 
-    private function attachDefaultEvent()
-    {
-        $provider = clone $this;
-
-        $this->event(function (ProcessorInterface $event) use ($provider) {
-            $event->process($provider->collection);
-        });
-    }
-
-    /**
-     * @return Dispatcher
-     */
-    public function getDispatcher()
-    {
-
-        if (!$this->processor) {
-            throw new \RuntimeException("Undefined processor");
-        }
-
-        $this->attachDefaultEvent();
-
-        foreach ($this->events as $event) {
-
-            $this->listener = $this->listener->add($event, $this->processor);
-        }
+        $this->builder = $builder;
 
 
-        $dispatcher = new Dispatcher($this);
+        /** @var ProvideEventInterface $event */
+        $this->fireProvideEvent('built');
 
-        return $dispatcher;
-    }
 
-    /**
-     * @inheritDoc
-     */
-    public function getListenersForEvent(object $event): iterable
-    {
-        yield from  $this->listener->getForEvent(get_class($event));
+        $q = $builder->toSql();
+
+        return $q;
     }
 
 

@@ -34,7 +34,6 @@ class TemplateOfBuilder extends ProvideTemplate
     }
 }
 
-;
 
 class StructureQueryBuilderTest extends TestCase
 {

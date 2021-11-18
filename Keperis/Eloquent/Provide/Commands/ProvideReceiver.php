@@ -12,6 +12,12 @@ class ProvideReceiver implements ProvideReceiverInterface
      */
     private $structure;
 
+    /**
+     * Is change
+     * @var bool
+     */
+    private $change = false;
+
     public function __construct($structure)
     {
         if (!$structure instanceof StructureCollection) {
@@ -37,6 +43,10 @@ class ProvideReceiver implements ProvideReceiverInterface
      */
     public function change(string $key, callable $callback): ProvideReceiverInterface
     {
+
+        if ($this->change === false) {
+            $this->change = true;
+        }
 
         $data = call_user_func($callback, $this->structure->get($key, []));
 
@@ -122,5 +132,14 @@ class ProvideReceiver implements ProvideReceiverInterface
     public function getInSetting(string $key)
     {
         return $this->structure->get('setting')[$key];
+    }
+
+    /**
+     * Check if call changer methods
+     * @return bool
+     */
+    public function isChange(): bool
+    {
+        return $this->change;
     }
 }

@@ -7,6 +7,12 @@ use Keperis\Eloquent\Provide\StructureCollection;
 interface ProvideReceiverInterface
 {
 
+    /**
+     * Check if call changer methods
+     * @return bool
+     */
+    public function isChange() : bool;
+
     /** Get structure collection
      * @return StructureCollection
      */

@@ -1,15 +1,14 @@
 <?php
 
-namespace Keperis\Eloquent\Provide;
+namespace Keperis\Eloquent\Provide\Event;
 
-use Illuminate\Support\Arr;
-use Keperis\Eloquent\Provide\Event\ProvideEventInterface;
+
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
  * @property EventDispatcherInterface $dispatcher
  */
-trait ProvideEvents
+trait Event
 {
 
     /**
@@ -72,7 +71,7 @@ trait ProvideEvents
 
         $result = static::$dispatcher->dispatch(new $this->dispatchesEvents[$event]($this->collection), $event);
 
-        var_dump($result);exit;
+
 
         if (!is_null($result)) {
             return $result;

@@ -2,6 +2,8 @@
 
 namespace Eloquent\Provide;
 
+use Keperis\Eloquent\Provide\Event\ProvideEventInterface;
+use Keperis\Eloquent\Provide\Event\ProvideEvents;
 use Keperis\Eloquent\Provide\ProvideStructure;
 use Keperis\Eloquent\Provide\ProvideTemplate;
 use Keperis\Eloquent\Provide\StructureCollection;
@@ -17,9 +19,9 @@ class ProvideStructureTemplate extends ProvideTemplate
             'as'     => 'as_city',
         ],
         'staff' => [
-            'select' => 'bc_staff',
-            'as' => 'staff',
-            'template' => 'CONCAT(%_select_%)'
+            'select'   => 'bc_staff',
+            'as'       => 'staff',
+            'template' => 'CONCAT(%_select_%)',
         ],
     ];
 
@@ -33,6 +35,17 @@ class ProvideStructureTemplate extends ProvideTemplate
     }
 }
 
+class Event extends ProvideEvents
+{
+
+    public function event()
+    {
+
+        $this->change->changeGet(function (){
+            return ['city'];
+        });
+    }
+}
 
 class ProvideStructureTest extends TestCase
 {
@@ -43,22 +56,19 @@ class ProvideStructureTest extends TestCase
     /**
      * @return StructureCollection
      */
-    private static function getCollection(){
-        if(is_null(self::$collection)){
+    private static function getCollection()
+    {
+        if (is_null(self::$collection)) {
             self::$collection = new StructureCollection('test', [
-                'get' => [
-                    'staff'
+                'get'   => [
+                    'staff',
                 ],
-                'class' => ProvideStructureTemplate::class
+                'class' => ProvideStructureTemplate::class,
             ]);
         }
         return self::$collection;
     }
 
-    public function testOnSetRequestEvent()
-    {
-
-    }
 
     public function testBuild()
     {
@@ -66,17 +76,21 @@ class ProvideStructureTest extends TestCase
         $provide = new ProvideStructure(self::getCollection());
 
 
-         $provide->build();
+        $provide->build();
 
     }
 
-    public function testSetRequest()
+    public function testGlobalEvent()
     {
+        ProvideStructure::registerGlobalEvents('beforeBuild', Event::class);
+        $provide = new ProvideStructure(self::getCollection());
 
-    }
 
-    public function testOnBuilt()
-    {
+        $provide->build();
+
+
+        $this->assertEquals(['city'], $provide->getCollection()->getGet());
+
 
     }
 }

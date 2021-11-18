@@ -4,21 +4,17 @@
 namespace Keperis\Eloquent\Provide;
 
 
-use Keperis\Eloquent\Provide\Event\BuiltEvent;
+use Keperis\Eloquent\Provide\Event\Event;
 use Keperis\Eloquent\Provide\Event\ProvideEventInterface;
-use Keperis\Eloquent\Provide\ProvideEvents;
 use Keperis\Eloquent\Provide\Builder\StructureQueryBuilder;
-
-use Keperis\Eloquent\Provide\Event\RequestEvent;
 use Keperis\Http\Request;
-use Keperis\Interfaces\EventDispatcher\EventDispatcherInterface;
 
 use Symfony\Component\EventDispatcher\EventDispatcher;
 
 class ProvideStructure
 {
 
-    use ProvideEvents;
+    use Event;
 
     protected static $globalEvents = [];
     /**
@@ -51,7 +47,7 @@ class ProvideStructure
      */
     public static function registerGlobalEvents(string $event, string $className)
     {
-        static::$globalEvents = array_merge([$event, $className], static::$globalEvents);
+        static::$globalEvents = array_merge([$event => $className], static::$globalEvents);
     }
 
     public function __construct(StructureCollection $collection)
@@ -62,6 +58,16 @@ class ProvideStructure
         $this->dispatchesEvents = static::$globalEvents;
     }
 
+
+    public function getCollection(): StructureCollection
+    {
+        return $this->collection;
+    }
+
+    /**
+     * Bind request
+     * @param Request $request
+     */
     public function bindRequest(Request $request)
     {
         $event = $this->fireProvideEvent('request');

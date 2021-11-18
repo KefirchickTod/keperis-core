@@ -5,6 +5,7 @@ namespace Keperis\Eloquent\Provide\Builder;
 
 
 use Illuminate\Database\Query\Builder;
+use Illuminate\Database\Query\Expression;
 use Illuminate\Support\Facades\DB;
 use Keperis\Eloquent\Provide\Exception\StructureValidatorException;
 use Keperis\Eloquent\Provide\ProvideTemplate;
@@ -106,7 +107,7 @@ class StructureQueryBuilder implements BuilderInterface
         foreach ($pattern as $controller => $value) {
             /** @var ProvideTemplate $controller */
             $controller = self::$resolveControllers[$controller];
-            foreach ($value as $item){
+            foreach ($value as $item) {
                 $p = $this->callMiddlewareStack($controller->getTemplate($item), $controller);
                 if (!$p) {
                     throw new \ParseError(sprintf("Cant parse pattern for controller [%s]", get_class($controller)));
@@ -146,6 +147,35 @@ class StructureQueryBuilder implements BuilderInterface
     }
 
 
+    public function createLine()
+    {
+        if ($this->structure->hasSetting('line')) {
+            $line = $this->structure->getSetting('line');
+
+            foreach ($line as $type => $value) {
+                switch ($type) {
+                    case 'select':
+                        $this->table->selectRaw($value);
+                        break;
+
+                    case 'join':
+                        foreach ($value as $join) {
+                            if (!array_key_exists('table', $join)) {
+                                throw new StructureValidatorException('Invalid join format for line builder');
+                            }
+                            $this->table->join($join['table'], function ($j) use ($join) {
+                                $j->on(self::raw($join['on']), self::raw(''), self::raw(''));
+                                if (array_key_exists('where', $join)) {
+                                    $j->whereRaw($join['where']);
+                                }
+                            });
+                        }
+                        break;
+                }
+            }
+        }
+    }
+
     public function createSelect()
     {
 
@@ -175,6 +205,7 @@ class StructureQueryBuilder implements BuilderInterface
     }
 
 
+
     public function createJoin()
     {
         /** @var  StructureCollection[] $join */
@@ -189,7 +220,10 @@ class StructureQueryBuilder implements BuilderInterface
             $type = $join->get('join_type', $join->get('type_join', $join->get('type')));
 
             $clouser = function ($j) use ($on) {
-                $j->on(DB::raw($on), DB::raw(''), DB::raw(''));
+
+
+
+                $j->on(self::raw($on), self::raw(''), self::raw(''));
             };
 
             switch (strtolower($type)) {
@@ -292,6 +326,7 @@ class StructureQueryBuilder implements BuilderInterface
         $this->createWhere();
         $this->createOrderBy();
         $this->createGroupBy();
+        $this->createLine();
 
         return $this;
     }
@@ -302,5 +337,10 @@ class StructureQueryBuilder implements BuilderInterface
     public function toSql(): string
     {
         return $this->table->toSql();
+    }
+
+    protected static function raw(string $value)
+    {
+        return new Expression($value);
     }
 }

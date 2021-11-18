@@ -58,4 +58,31 @@ class StructureQueryBuilderTest extends TestCase
         $this->assertEquals("select city as as_city, bc_staff as staff from bc_test where city in (1,2) order by `as_city` asc", $builder->toSql());
 
     }
+
+    public function testLine(){
+        $structure = [
+            'get'   => ['city', 'staff'],
+            'class' => TemplateOfBuilder::class,
+            'setting' => [
+                'order' => 'as_city',
+                'where' => 'city in (1,2)',
+                'line' => [
+                    'select' => 'id',
+                    'join' => [
+                        [
+                            'table' => 'user',
+                            'on' => 'id1 = id2'
+                        ]
+                    ],
+                ]
+            ],
+        ];
+
+        $builder = new StructureQueryBuilder(new StructureCollection('test', $structure));
+
+        $builder->build();
+
+
+        $this->assertEquals("select city as as_city, bc_staff as staff, id from bc_test where city in (1,2) order by `as_city` asc", $builder->toSql());
+    }
 }

@@ -111,6 +111,6 @@ class StructureQueryBuilderTest extends TestCase
         $builder->build();
 
 
-        $this->assertEquals("select city as as_city, bc_staff as staff, id from bc_test where city in (1,2) order by `as_city` asc", $builder->toSql());
+        $this->assertEquals("select city as as_city, bc_staff as staff, id from bc_test inner join `user` on id1  =  id2 where city in (1,2) order by `as_city` asc", $builder->toSql());
     }
 }

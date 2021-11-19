@@ -168,7 +168,8 @@ class StructureQueryBuilder implements BuilderInterface
                                 throw new StructureValidatorException('Invalid join format for line builder');
                             }
                             $this->table->join($join['table'], function ($j) use ($join) {
-                                $j->on(self::raw($join['on']), self::raw(''), self::raw(''));
+                                $on = explode('=',$join['on']);
+                                $j->on(self::raw($on[0]), self::raw($on[1]));
                                 if (array_key_exists('where', $join)) {
                                     $j->whereRaw($join['where']);
                                 }

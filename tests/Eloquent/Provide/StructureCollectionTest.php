@@ -8,26 +8,35 @@ use PHPUnit\Framework\TestCase;
 class bcTest extends ProvideTemplate
 {
     protected $sqlSetting = [
-        'table' => 'none',
+        'table'    => 'none',
         'fullName' => [
             'select' => 'false',
-            'type' => 'string',
+            'type'   => 'string',
         ],
     ];
+
+    /**
+     * Get resolve name for quick copy obj
+     * @return string
+     */
+    public function getResolveName(): string
+    {
+        return 'bc_test';
+    }
 }
 
 class StructureCollectionTest extends TestCase
 {
     private static $structure = [
-        'get' => ['fullName'],
-        'class' => bcTest::class,
+        'get'     => ['fullName'],
+        'class'   => bcTest::class,
         'setting' => [
             'join' => [
                 'join1' => [
-                    'get' => ['fullName'],
+                    'get'   => ['fullName'],
                     'class' => bcTest::class,
-                ]
-            ]
+                ],
+            ],
         ],
     ];
 
@@ -50,43 +59,5 @@ class StructureCollectionTest extends TestCase
         $this->assertEquals([new bcTest], $controllers);
     }
 
-//    public function testGetSetting()
-//    {
-//
-//    }
-//
-//    public function testSetSetting()
-//    {
-//
-//    }
-//
-//    public function testHasSetting()
-//    {
-//
-//    }
-//
-//    public function testGetKey()
-//    {
-//
-//    }
-//
-//    public function testHasInGetParam()
-//    {
-//
-//    }
-//
-//    public function testGetJoin()
-//    {
-//
-//    }
-//
-//    public function testSetGet()
-//    {
-//
-//    }
-//
-//    public function testGetGet()
-//    {
-//
-//    }
+
 }

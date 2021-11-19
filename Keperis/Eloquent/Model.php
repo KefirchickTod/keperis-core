@@ -9,27 +9,23 @@ use Keperis\Eloquent\Concerns\MaskConcerns;
 
 abstract class Model extends \Illuminate\Database\Eloquent\Model
 {
-    use ImportXlsx, MaskConcerns;
+    use MaskConcerns;
 
 
+    /**
+     * Unset default timestamps
+     * @var bool
+     */
     public $timestamps = false;
 
+    /**
+     * Create connection to db (MySql);
+     * @return \Illuminate\Database\Query\Builder
+     */
     protected function newBaseQueryBuilder()
     {
         return container()->connection->query();
     }
-
-
-    public function setAsOrm(array $value){
-        if(!is_array($value)){
-            throw new \InvalidArgumentException("Value for create orm must by a array type");
-        }
-
-        $clone = new static($value);
-
-        return $clone;
-    }
-
 
 
 }

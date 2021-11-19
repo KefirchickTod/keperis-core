@@ -34,6 +34,27 @@ class TemplateOfBuilder extends ProvideTemplate
     }
 }
 
+class TemplateOfBuilderJoin extends ProvideTemplate
+{
+
+    protected $temp = [
+        'table' => 'bc_join',
+        'turnoved' => [
+            'select' => 'bc_turnoved',
+            'as' => 'turnoved',
+            'template' => 'CONCAT(%_select_%)'
+        ],
+    ];
+
+    /**
+     * Get resolve name for quick copy obj
+     * @return string
+     */
+    public function getResolveName(): string
+    {
+        return 'table_builder_test';
+    }
+}
 
 class StructureQueryBuilderTest extends TestCase
 {
@@ -45,6 +66,14 @@ class StructureQueryBuilderTest extends TestCase
             'get'   => ['city', 'staff'],
             'class' => TemplateOfBuilder::class,
             'setting' => [
+                'join' => [
+                    [
+                        'get' => ['turnoved'],
+                        'class' => TemplateOfBuilderJoin::class,
+                        'join_type' => 'LEFT',
+                        'on' => 'join_id = id'
+                    ],
+                ],
                 'order' => 'as_city',
                 'where' => 'city in (1,2)'
             ],
@@ -54,8 +83,7 @@ class StructureQueryBuilderTest extends TestCase
 
         $builder->build();
 
-
-        $this->assertEquals("select city as as_city, bc_staff as staff from bc_test where city in (1,2) order by `as_city` asc", $builder->toSql());
+        $this->assertEquals("select city as as_city, bc_staff as staff, bc_turnoved as turnoved from bc_test left join `bc_join` on join_id  =  id where city in (1,2) order by `as_city` asc", $builder->toSql());
 
     }
 

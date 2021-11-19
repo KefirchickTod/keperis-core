@@ -6,10 +6,10 @@ namespace Keperis\Eloquent\Provide\Builder;
 
 use Illuminate\Database\Query\Builder;
 use Illuminate\Database\Query\Expression;
-use Illuminate\Support\Facades\DB;
 use Keperis\Eloquent\Provide\Exception\StructureValidatorException;
 use Keperis\Eloquent\Provide\ProvideTemplate;
 use Keperis\Eloquent\Provide\StructureCollection;
+use Keperis\Eloquent\Provide\Template\ProvideTemplateInterface;
 use Keperis\MiddlewareTrait;
 
 
@@ -138,8 +138,12 @@ class StructureQueryBuilder implements BuilderInterface
             if (!$item) {
                 throw new StructureValidatorException("Invalid join parse format");
             }
-            self::$resolveControllers[get_class($item)] = $item;
-            $patterns[get_class($item)] = $item->getGet();
+
+            $controller = $item->getController();
+
+
+            self::$resolveControllers[get_class($controller)] = $controller;
+            $patterns[get_class($controller)] = $item->getGet();
 
         }
 
@@ -205,7 +209,6 @@ class StructureQueryBuilder implements BuilderInterface
     }
 
 
-
     public function createJoin()
     {
         /** @var  StructureCollection[] $join */
@@ -220,10 +223,8 @@ class StructureQueryBuilder implements BuilderInterface
             $type = $join->get('join_type', $join->get('type_join', $join->get('type')));
 
             $clouser = function ($j) use ($on) {
-
-
-
-                $j->on(self::raw($on), self::raw(''), self::raw(''));
+                $on = explode('=', $on);
+                $j->on(self::raw($on[0]), self::raw($on[1]));
             };
 
             switch (strtolower($type)) {
@@ -339,8 +340,8 @@ class StructureQueryBuilder implements BuilderInterface
         return $this->table->toSql();
     }
 
-    protected static function raw(string $value)
-    {
+
+    private static function raw(string $value){
         return new Expression($value);
     }
 }

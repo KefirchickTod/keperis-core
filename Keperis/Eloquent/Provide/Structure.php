@@ -24,7 +24,7 @@ class Structure implements StructureInterface
     /**
      * @var array
      */
-    public static $resolved = [];
+    protected static $resolved = [];
 
     /**
      * @param array $structure
@@ -44,7 +44,6 @@ class Structure implements StructureInterface
 
         return $clone;
     }
-
 
 
     public function __clone()
@@ -67,6 +66,6 @@ class Structure implements StructureInterface
 
         self::$resolved[$key] = [];
         return [];
-
     }
+
 }

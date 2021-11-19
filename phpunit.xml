@@ -33,7 +33,7 @@
         <env name="DB_NAME" value="bcclub_crm"/>
         <env name="DB_UTC" value="+2:00"/>
         <env name="DB_USER" value="root"/>
-        <env name="DB_PASS" value=""/>
+        <env name="DB_PASS" value="root"/>
     </php>
 
 </phpunit>

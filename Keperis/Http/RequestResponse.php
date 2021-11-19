@@ -5,9 +5,13 @@ namespace Keperis\Http;
 
 
 use Keperis\Controller\Controller;
+use Keperis\MiddlewareTrait;
 
 class RequestResponse
 {
+
+
+    use MiddlewareTrait;
 
 
     /**

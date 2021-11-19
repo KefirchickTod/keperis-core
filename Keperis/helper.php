@@ -1,12 +1,12 @@
 <?php
 
+namespace Keperis;
 
 use Keperis\Container;
 use Keperis\Core\easyCreateHTML;
 use Keperis\Http\Uri;
 use Keperis\Router\Route;
 use Keperis\Router\Router;
-use Keperis\Structure\Structure;
 
 if (!function_exists('debug')) {
     /**

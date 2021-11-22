@@ -1,12 +1,12 @@
 <?php
 
 
-namespace Keperis\Page\Components\Table;
+namespace Keperis\Page\Table\Entity;
 
 
 use Illuminate\Support\Str;
 use Keperis\MiddlewareProvideTableTrait;
-use Keperis\Page\Components\TableComponent;
+use Keperis\Page\Components\Table;
 use stdClass;
 
 class TBody implements TableEntity
@@ -40,7 +40,7 @@ class TBody implements TableEntity
     }
 
 
-    public function register(TableComponent $table)
+    public function register(Table $table)
     {
         if ($this->action) {
             $this->action = new ActionButton(null, $this->action);

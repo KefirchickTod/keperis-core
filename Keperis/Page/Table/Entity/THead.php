@@ -1,11 +1,11 @@
 <?php
 
 
-namespace Keperis\Page\Components\Table;
+namespace Keperis\Page\Table\Entity;
 
 
 use Keperis\Collection;
-use Keperis\Page\Components\TableComponent;
+use Keperis\Page\Components\Table;
 
 class THead implements TableEntity
 {
@@ -145,7 +145,7 @@ class THead implements TableEntity
     }
 
 
-    public function register(TableComponent $table): TableComponent
+    public function register(Table $table): Table
     {
         return $table;
     }

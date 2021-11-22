@@ -1,22 +1,21 @@
 <?php
 
-namespace Keperis\Page\Components;
+namespace Keperis\Page\Table;
 
 use Keperis\View\ValidatorInterface;
-use Keperis\View\Validators\Validator;
 
-class ComponentViewValidator implements ValidatorInterface
+class View  implements ValidatorInterface
 {
     static private $types = [
-        Validator::VIEW_VALIDATOR_PHP_EXTENSION,
-        Validator::VIEW_VALIDATOR_HTML_EXTENSION,
+        ValidatorInterface::VIEW_VALIDATOR_PHP_EXTENSION,
+        ValidatorInterface::VIEW_VALIDATOR_HTML_EXTENSION,
     ];
 
     /**
      * @param string $file
      * @return string|null
      */
-    public function validate(string $file)
+    public function validate(string $file): ?string
     {
         $file = $this->getCorrectDir($file);
 

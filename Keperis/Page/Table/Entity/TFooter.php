@@ -1,11 +1,11 @@
 <?php
 
 
-namespace Keperis\Page\Components\Table;
+namespace Keperis\Page\Table\Entity;
 
 
 
-use Keperis\Page\Components\TableComponent;
+use Keperis\Page\Components\Table;
 
 class TFooter implements TableEntity
 {
@@ -13,7 +13,7 @@ class TFooter implements TableEntity
 
 
 
-    public function register(TableComponent $table)
+    public function register(Table $table)
     {
 
         return $table;

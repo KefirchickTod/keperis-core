@@ -1,16 +1,17 @@
 <?php
 
-namespace Keperis\Page\Components;
+namespace Keperis\Page\Table;
 
+use Keperis\Eloquent\Model;
 use Keperis\Interfaces\ProvideMask;
 use Keperis\Page\Component;
-use Keperis\Page\Components\Table\TableEntity;
-use Keperis\Page\Components\Table\TBody;
-use Keperis\Page\Components\Table\TFooter;
-use Keperis\Page\Components\Table\THead;
-use Keperis\Page\Components\Table\View\TableViewValidator;
+use Keperis\Page\Table\Entity\TableEntity;
+use Keperis\Page\Table\Entity\TBody;
+use Keperis\Page\Table\Entity\TFooter;
+use Keperis\Page\Table\Entity\THead;
 
-class TableComponent extends Component
+
+class Table implements Component
 {
 
     /**
@@ -63,14 +64,14 @@ class TableComponent extends Component
      * Render table after process component
      * @return string
      */
-    public function table()
+    public function render() : string
     {
         $result = [];
 
         $components = $this->getComponents();
         foreach ($components as &$component) {
             /**
-             * @var $clone TableComponent
+             * @var $clone Table
              * @var $component TableEntity
              */
             $clone = $component->register($this);
@@ -87,6 +88,7 @@ class TableComponent extends Component
         return $content;
     }
 
+
     /**
      * Render by template table component
      * @param string $content
@@ -100,7 +102,7 @@ class TableComponent extends Component
             $name = static::$resourceTemplate;
         };
         try {
-            $temp = \Keperis\View\ViewFactory::makeWithOwnValidator(new TableViewValidator(),
+            $temp = \Keperis\View\ViewFactory::makeWithOwnValidator(new View(),
                 $name)->withDir(__DIR__ . '/resource')->render();
         } catch (\Exception $exception) {
             error_log($exception->getMessage());
@@ -140,44 +142,6 @@ class TableComponent extends Component
     public function tfooter()
     {
         return new TFooter();
-    }
-
-
-    /**
-     * Create static object with parsing data
-     * @param ProvideMask $mask
-     * @param string $key
-     * @return static
-     */
-    public static function createByMask(ProvideMask $mask, string $key)
-    {
-        $title = $mask->getTitle($key);
-
-        $data = $mask->getMask($key);
-        $row = structure()->set($data)->get(key($data));
-
-
-        $action = $mask->getAction($key);
-
-        return new static($title, $row, $action);
-    }
-
-
-    /**
-     * @param EloquentModelTable $modelTable
-     * @return static
-     */
-    public static function createByModel(EloquentModelTable $modelTable)
-    {
-        return static::createByMask($modelTable->mask(), $modelTable->getMaskKey());
-    }
-
-
-    public static function createByStructure(array $structure, array $title, ?array $action = [])
-    {
-        $row = structure()->set($structure)->get(key($structure));
-
-        return new static($title, $row, $action);
     }
 
 

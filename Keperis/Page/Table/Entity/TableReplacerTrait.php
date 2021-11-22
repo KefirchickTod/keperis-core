@@ -1,6 +1,6 @@
 <?php
 
-namespace Keperis\Page\Components\Table;
+namespace Keperis\Page\Table\Entity;
 
 trait TableReplacerTrait
 {

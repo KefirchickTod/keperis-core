@@ -7,11 +7,11 @@ namespace Keperis\Page;
 use Keperis\EventDispatcher\Concerns\DelegatesToDisptacher;
 use Keperis\Interfaces\ProvideMask;
 
-abstract class Component
+interface Component
 {
 
-    use DelegatesToDisptacher;
-
-    public abstract static function createByMask(ProvideMask $mask, string $key);
-
+    /**
+     * @return string
+     */
+    public function render() : string;
 }

@@ -35,8 +35,11 @@ class StructureQueryBuilder implements BuilderInterface
      */
     protected $patterns = [];
 
-
+    /**
+     * @var array
+     */
     protected static $resolveControllers = [];
+
 
     public function __construct(StructureCollection $structure)
     {
@@ -61,6 +64,13 @@ class StructureQueryBuilder implements BuilderInterface
         $this->boot();
     }
 
+    /**
+     * @return Builder
+     */
+    public function getTable(): Builder
+    {
+        return $this->table;
+    }
 
     /**
      * Check if is valid pattern format

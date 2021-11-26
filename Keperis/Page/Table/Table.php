@@ -2,8 +2,8 @@
 
 namespace Keperis\Page\Table;
 
-use Keperis\Eloquent\Model;
-use Keperis\Interfaces\ProvideMask;
+use Keperis\HasEvent;
+
 use Keperis\Page\Component;
 use Keperis\Page\Table\Entity\TableEntity;
 use Keperis\Page\Table\Entity\TBody;
@@ -13,6 +13,8 @@ use Keperis\Page\Table\Entity\THead;
 
 class Table implements Component
 {
+
+    use HasEvent;
 
     /**
      * If null using default table template
@@ -64,7 +66,7 @@ class Table implements Component
      * Render table after process component
      * @return string
      */
-    public function render() : string
+    public function render(): string
     {
         $result = [];
 
@@ -76,8 +78,8 @@ class Table implements Component
              */
             $clone = $component->register($this);
 
-            if ($clone->hasEvent(get_class($component))) {
-                $component = $clone->dispatch($component);
+            if ($clone->issetDispatchesEvents(get_class($component))) {
+                $component = $clone->fireProvideEvent(get_class($component));
             }
             $result[] = $component->render();
         }
@@ -143,7 +145,6 @@ class Table implements Component
     {
         return new TFooter();
     }
-
 
 
 }

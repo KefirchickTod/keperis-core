@@ -4,9 +4,9 @@
 namespace Keperis\Eloquent\Provide;
 
 
-use Keperis\Eloquent\Provide\Event\Event;
 use Keperis\Eloquent\Provide\Event\ProvideEventInterface;
 use Keperis\Eloquent\Provide\Builder\StructureQueryBuilder;
+use Keperis\HasEvent;
 use Keperis\Http\Request;
 
 use Symfony\Component\EventDispatcher\EventDispatcher;
@@ -14,7 +14,13 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
 class ProvideStructure
 {
 
-    use Event;
+    use HasEvent;
+
+    /**
+     * Key for register unique name for your listenner
+     * @var string
+     */
+    protected static $dispatchesKey = 'provide';
 
     protected static $globalEvents = [];
     /**

@@ -1,17 +1,56 @@
 <?php
 
 
-namespace Keperis\Page\Components;
+namespace Keperis\Page\Paginator;
 
 
-use Keperis\Interfaces\ProvideMask;
-use Keperis\Page\Component;
+use Illuminate\Database\Query\Builder;
+use Illuminate\Pagination\AbstractPaginator;
+use Keperis\Eloquent\Provide\Builder\BuilderInterface;
 
-class Paginator extends Component
+class Paginator
 {
 
-    public static function createByMask(ProvideMask $mask, string $key)
+
+    const PER_PAGE = 10;
+
+    /**
+     * @var Builder
+     */
+    protected $builder;
+
+    /**
+     * @var int
+     */
+    protected $total = 0;
+
+    public function __construct(Builder $query)
     {
-        // TODO: Implement createByMask() method.
+        $this->builder = $query;
+
+        $this->total = $this->builder->getCountForPagination();
+    }
+
+
+    public function getCount()
+    {
+        return $this->builder->getCountForPagination();
+    }
+
+
+    public static function makeByStructure(BuilderInterface $builder)
+    {
+        return new static($builder->getTable());
+    }
+
+
+
+
+    /**
+     * @return AbstractPaginator
+     */
+    public function paginate(): AbstractPaginator
+    {
+        return $this->builder->paginate(self::PER_PAGE);
     }
 }

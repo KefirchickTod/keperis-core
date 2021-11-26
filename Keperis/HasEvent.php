@@ -1,15 +1,16 @@
 <?php
 
-namespace Keperis\Eloquent\Provide\Event;
+namespace Keperis;
 
-
+use Keperis\Eloquent\Provide\Event\ProvideEventInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
  * @property EventDispatcherInterface $dispatcher
  */
-trait Event
+trait HasEvent
 {
+
 
     /**
      * The event map for the model.
@@ -19,9 +20,6 @@ trait Event
      * @var array
      */
     protected $dispatchesEvents = [];
-
-
-
 
 
     /**
@@ -36,7 +34,13 @@ trait Event
         if (isset(static::$dispatcher)) {
             $name = static::class;
 
-            static::$dispatcher->addListener("provide.{$event}: {$name}", $callback);
+            if (isset(static::$dispatchesKey)) {
+                throw new \InvalidArgumentException(sprintf("Invalid key for register event in: [%s]", static::class));
+            }
+
+            $key = static::$dispatchesKey;
+
+            static::$dispatcher->addListener("{$key}.{$event}: {$name}", $callback);
         }
     }
 
@@ -57,6 +61,11 @@ trait Event
         return $result;
     }
 
+    protected function issetDispatchesEvents(string $event)
+    {
+        return isset($this->dispatchesEvents[$event]);
+    }
+
     /**
      * Fire a custom model event for the given event.
      *
@@ -65,12 +74,11 @@ trait Event
      */
     protected function fireCustomModelEvent(string $event)
     {
-        if (!isset($this->dispatchesEvents[$event])) {
+        if (!$this->issetDispatchesEvents($event)) {
             return;
         }
 
         $result = static::$dispatcher->dispatch(new $this->dispatchesEvents[$event]($this->collection), $event);
-
 
 
         if (!is_null($result)) {
@@ -100,11 +108,12 @@ trait Event
             return false;
         }
 
+        $key = static::$dispatchesKey;
+
         return !empty($result) ? $result : static::$dispatcher->dispatch(
-            $this, "provide.{$event}: " . static::class,
+            $this, "{$key}.{$event}: " . static::class,
         );
     }
-
 
 
 }

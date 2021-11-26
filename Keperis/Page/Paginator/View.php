@@ -1,6 +1,6 @@
 <?php
 
-namespace Keperis\Page\Table;
+namespace Keperis\Page\Paginator;
 
 use Keperis\View\ValidatorInterface;
 use \Keperis\Page\View as BaseComponentView;
@@ -23,4 +23,5 @@ class View extends BaseComponentView
 
         return false;
     }
+
 }

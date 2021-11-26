@@ -4,7 +4,7 @@
 namespace Keperis\Page\Table\Entity;
 
 
-use Keperis\Page\Components\Table;
+use Keperis\Page\Table\Table;
 
 interface TableEntity
 {

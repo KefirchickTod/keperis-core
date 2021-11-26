@@ -4,11 +4,16 @@
 namespace Keperis\Eloquent\Provide\Builder;
 
 
+use Illuminate\Database\Query\Builder;
+
 interface BuilderInterface
 {
 
 
-
+    /**
+     * @return Builder
+     */
+    public function getTable() : Builder;
 
     /**
      * Building to query

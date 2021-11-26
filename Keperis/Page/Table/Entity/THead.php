@@ -5,7 +5,7 @@ namespace Keperis\Page\Table\Entity;
 
 
 use Keperis\Collection;
-use Keperis\Page\Components\Table;
+use Keperis\Page\Table\Table;
 
 class THead implements TableEntity
 {

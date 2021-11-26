@@ -2,11 +2,12 @@
 
 namespace Keperis\Page\FilterData;
 
+use Keperis\Eloquent\Provide\ProvideTemplate;
 use PHPUnit\Framework\TestCase;
 use Keperis\Page\DataTransformation;
 
 
-class bcTest extends ProvideTemplate
+class bcFilter extends ProvideTemplate
 {
     protected $sqlSetting = [
         'table' => 'none',
@@ -15,6 +16,15 @@ class bcTest extends ProvideTemplate
             'type' => 'string',
         ],
     ];
+
+    /**
+     * Get resolve name for quick copy obj
+     * @return string
+     */
+    public function getResolveName(): string
+    {
+        // TODO: Implement getResolveName() method.
+    }
 }
 
 class FilterTest extends TestCase
@@ -30,7 +40,7 @@ class FilterTest extends TestCase
             'get' => [
                 'fullName'
             ],
-            'class' => bcTest::class,
+            'class' => bcFilter::class,
         ];
 
         $transformation = new DataTransformation($structure);

@@ -6,7 +6,7 @@ namespace Keperis\Page\Table\Entity;
 
 use Illuminate\Support\Str;
 use Keperis\MiddlewareProvideTableTrait;
-use Keperis\Page\Components\Table;
+use Keperis\Page\Table\Table;
 use stdClass;
 
 class TBody implements TableEntity
@@ -148,7 +148,7 @@ class TBody implements TableEntity
 
             $row[$key] = $this->renderTrContent($content, '', $line, [
                 'data-id' => $row['id'],
-                'title'   => addslashes(clean($content)),
+                'title'   => addslashes($content),
             ]);
 
         }

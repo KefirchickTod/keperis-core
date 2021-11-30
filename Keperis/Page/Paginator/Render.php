@@ -43,13 +43,16 @@ class Render implements Component
     }
 
 
-
     /**
      * @return string
      */
     public function render(): string
     {
-        $paginator = $this->paginator->paginate();
+        $paginator = $this->paginator->getPaginate();
+
+        if (!$this->paginator->hasPaginated()) {
+            $paginator = $this->paginator->paginate();
+        }
 
         $view = $this->getView();
 

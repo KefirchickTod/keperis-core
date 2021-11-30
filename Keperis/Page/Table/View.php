@@ -9,6 +9,10 @@ class View extends BaseComponentView
 {
 
 
+    /**
+     * @param string $file
+     * @return false|string
+     */
     protected function getCorrectDir(string $file)
     {
         $fileDir = explode('.', $file);

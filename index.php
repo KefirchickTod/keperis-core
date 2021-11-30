@@ -10,19 +10,25 @@ $_ENV['DB_UTC'] = '+2:00';
 require_once "vendor/autoload.php";
 
 
-
-
 $builder = \Keperis\Eloquent\DB::getInstance()->getQueryBuilder();
 
-$pagination = $builder
+
+$paginator = new \Keperis\Page\Paginator\Paginator($builder
     ->from('bc_user')
-    ->select(['*'])
-    ->paginate(2);
+    ->select(['*']));
 
 
+$elements = $paginator->paginate()->getCollection();
 
-var_dump($pagination[0]);exit;
+$row = array_map(function ($el) {
+    return (array)$el;
+}, $elements->toArray());
 
+$table = new \Keperis\Page\Table\Table(['bc_user_id' => [
+    'text' => 'id'
+]], $row, []);
+
+var_dump($table->render(),$row);exit;
 
 
 use Symfony\Component\Routing\RouteCollection;

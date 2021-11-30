@@ -23,8 +23,12 @@ class Paginator
      * @var int
      */
     protected $total = 0;
+    /**
+     * @var \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
+    private $paginate = null;
 
-    public function __construct(Builder $query)
+    public function __construct(?Builder $query)
     {
         $this->builder = $query;
 
@@ -32,25 +36,52 @@ class Paginator
     }
 
 
+    /**
+     * Return all count
+     * @return int
+     */
     public function getCount()
     {
         return $this->builder->getCountForPagination();
     }
 
 
-    public static function makeByStructure(BuilderInterface $builder)
-    {
-        return new static($builder->getTable());
-    }
-
-
-
-
     /**
+     * Compiled and paginate builder
      * @return AbstractPaginator
      */
     public function paginate(): AbstractPaginator
     {
-        return $this->builder->paginate(self::PER_PAGE);
+        $this->paginate = $this->builder->paginate(self::PER_PAGE);
+
+        return $this->paginate;
     }
+
+
+    /**
+     * Easy factory
+     * @return Render
+     */
+    public function makeRender()
+    {
+        return new Render($this);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasPaginated()
+    {
+
+        return $this->paginate instanceof AbstractPaginator;
+    }
+
+    /**
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator|null
+     */
+    public function getPaginate()
+    {
+        return $this->paginate;
+    }
+
 }

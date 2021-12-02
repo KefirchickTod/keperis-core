@@ -28,6 +28,14 @@ $table = new \Keperis\Page\Table\Table(['bc_user_id' => [
     'text' => 'id'
 ]], $row, []);
 
+
+$table->tbodyListener(function (\Keperis\Page\Table\Entity\TBody $component){
+    $component->add(function ($row){
+        var_dump($row);exit;
+    });
+});
+
+
 var_dump($table->render(),$row);exit;
 
 

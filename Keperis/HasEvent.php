@@ -26,15 +26,20 @@ trait HasEvent
      * Register a model event with the dispatcher.
      *
      * @param string $event
-     * @param \Closure|ProvideEventInterface $callback
+     * @param \Closure|mixed $callback
      * @return void
      */
     protected static function registerProvideEvent($event, $callback)
     {
+        if (!$callback instanceof \Closure && (isset(self::$callableInterface) && !$callback instanceof self::$callableInterface)) {
+            throw new \RuntimeException(sprintf("Cant register callback [%s] for invalid interface ",
+                get_class($callback)));
+        }
+
         if (isset(static::$dispatcher)) {
             $name = static::class;
 
-            if (isset(static::$dispatchesKey)) {
+            if (!isset(static::$dispatchesKey)) {
                 throw new \InvalidArgumentException(sprintf("Invalid key for register event in: [%s]", static::class));
             }
 

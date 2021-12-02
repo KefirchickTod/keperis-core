@@ -9,12 +9,12 @@ use Keperis\Page\Table\Entity\TableEntity;
 use Keperis\Page\Table\Entity\TBody;
 use Keperis\Page\Table\Entity\TFooter;
 use Keperis\Page\Table\Entity\THead;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 
 
 class Table implements Component
 {
 
-    use HasEvent;
 
     /**
      * If null using default table template
@@ -39,14 +39,66 @@ class Table implements Component
      */
     private $title;
 
-    //private static $resolve = [];
+    /**
+     * The event dispatcher instance.
+     *
+     * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
+     */
+    protected $dispatcher;
+
+    /**
+     * Check if booted class
+     * @var bool
+     */
+    protected static $isBooted = false;
 
     public function __construct(array $title, ?array $row = null, ?array $action = null)
     {
         $this->action = $action;
         $this->title = $title;
         $this->row = $row;
+
+
+        $this->dispatcher = new EventDispatcher();
     }
+
+    /**
+     * Register listener after create THEAD
+     * @param callable $listener
+     * @return $this
+     */
+    public function theadListener(callable $listener)
+    {
+
+        $this->dispatcher->addListener(THead::class, $listener);
+
+        return $this;
+    }
+
+    /**
+     * Register listener after create TBODY
+     * @param callable $listener
+     * @return $this
+     */
+    public function tbodyListener(callable $listener)
+    {
+        $this->dispatcher->addListener(TBody::class, $listener);
+
+        return $this;
+    }
+
+    /**
+     * Register listener after create TFOOTER
+     * @param callable $listener
+     * @return $this
+     */
+    public function tfooterListener(callable $listener)
+    {
+        $this->dispatcher->addListener(TFooter::class, $listener);
+
+        return $this;
+    }
+
 
 
     /**
@@ -61,6 +113,7 @@ class Table implements Component
             $this->tfooter(),
         ];
     }
+
 
     /**
      * Render table after process component
@@ -78,8 +131,8 @@ class Table implements Component
              */
             $clone = $component->register($this);
 
-            if ($clone->issetDispatchesEvents(get_class($component))) {
-                $component = $clone->fireProvideEvent(get_class($component));
+            if($clone->dispatcher->hasListeners(get_class($component))){
+                $component = $clone->dispatcher->dispatch($component, get_class($component));
             }
             $result[] = $component->render();
         }

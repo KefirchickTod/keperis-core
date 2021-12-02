@@ -16,6 +16,8 @@ class ProvideStructure
 
     use HasEvent;
 
+    protected static $callableInterface = ProvideEventInterface::class;
+
     /**
      * Key for register unique name for your listenner
      * @var string
@@ -23,6 +25,7 @@ class ProvideStructure
     protected static $dispatchesKey = 'provide';
 
     protected static $globalEvents = [];
+
     /**
      * The event dispatcher instance.
      *
